@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@fei-sql3.upceucebny.cz:1521:BDAS
+    username: st64550
+    password: abcde
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+
+
+server:
+  port: 8080

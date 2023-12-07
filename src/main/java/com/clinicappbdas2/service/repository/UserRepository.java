@@ -3,6 +3,8 @@ package com.clinicappbdas2.service.repository;
 import com.clinicappbdas2.model.request.NewPasswordRequest;
 import com.clinicappbdas2.model.request.RegisterRequest;
 import com.clinicappbdas2.model.security.User;
+import com.clinicappbdas2.model.security.UserRole;
+import com.clinicappbdas2.model.security.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,33 +19,43 @@ import java.util.List;
 public class UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
+    private int userId = 1000;
 
     public void register(RegisterRequest request) {
         final var existingUser = getUserByLogin(request.getLogin());
         if (existingUser == null) {
-            String query = "INSERT INTO UZIVATELE (LOGIN, PASSWORD, ROLE) " +
-                    "VALUES (?, ?, ?)";
+            String query = "INSERT INTO USERS (USER_ID, LOGIN, PASSWORD, ID_ROLE) " +
+                    "VALUES (?, ?, ?, ?)";
+
+            final var login = request.getLogin();
+            final var password = passwordEncoder.encode(request.getPassword());
+            final var role = request.getRole() == UserRole.ADMIN ? 210008 : 210009;
 
             final var result = jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection
-                        .prepareStatement(query, new String[]{"ID"});
-                ps.setString(1, request.getLogin());
-                ps.setString(2, request.getPassword());
-                ps.setString(3, request.getRole().toString());
+                        .prepareStatement(query, new String[]{"USER_ID"});
+                ps.setInt(1, userId++);
+                ps.setString(2, login);
+                ps.setString(3, password);
+                ps.setInt(4, role);
                 return ps;
             });
             System.out.println("Registered with ID: " + result);
         }
     }
 
+    // TODO:
+    /**
+     * 1. triggers + sequences for each table to insert id (replace if passed by sequence value)
+     * 2. view `USER join USER_ROLE by roleId`
+     * 3. change `USERS` by view name
+     * 4. change User.getusermapper()
+     *
+     * */
     public User getUserByLogin(String login) {
-        String query = "SELECT * FROM UZIVATELE WHERE LOGIN like ?";
+        String query = "SELECT * FROM USERS_VIEW WHERE LOGIN like ?";
         List<User> foundUsers = jdbcTemplate.query(query, new Object[]{login}, User.getUserMapper());
         if (foundUsers.size() != 1) {
             return null;
@@ -83,3 +95,4 @@ public class UserRepository {
 
 
 }
+

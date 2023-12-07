@@ -34,8 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        final var conf = auth.userDetailsService(userService::getUserDetailsByLogin);
-
+        auth.userDetailsService(userService::getUserDetailsByLogin);
     }
 
     @Override

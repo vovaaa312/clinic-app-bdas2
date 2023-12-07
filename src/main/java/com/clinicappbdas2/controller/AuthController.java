@@ -24,15 +24,10 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/registration")
     public void register(@RequestBody RegisterRequest registerRequest) {
-        final var encoded = new RegisterRequest(
-                registerRequest.getLogin(),
-                passwordEncoder.encode(registerRequest.getPassword()),
-                registerRequest.getRole());
-        userService.register(encoded);
+        userService.register(registerRequest);
     }
 
     @PostMapping("/login")

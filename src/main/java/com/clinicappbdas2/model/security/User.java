@@ -13,7 +13,7 @@ public class User implements UserDetails, Serializable {
     private Integer id;
     private String login;
     private String password;
-    private com.clinicappbdas2.model.security.UserRole role;
+    private UserRole role;
     private String roleName;
 
     public static RowMapper<User> getUserMapper() {
@@ -22,7 +22,6 @@ public class User implements UserDetails, Serializable {
             user.setId(rs.getInt("USER_ID"));
             user.setLogin(rs.getString("LOGIN"));
             user.setPassword(rs.getString("PASSWORD"));
-            user.setRole(com.clinicappbdas2.model.security.UserRole.valueOf(rs.getString("ROLE")));
             user.setRoleName(rs.getString("NAZEV_ROLE"));
             return user;
         };

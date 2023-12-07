@@ -4,9 +4,7 @@ import com.clinicappbdas2.model.request.NewPasswordRequest;
 import com.clinicappbdas2.model.request.RegisterRequest;
 import com.clinicappbdas2.model.security.User;
 import com.clinicappbdas2.model.security.UserRole;
-import com.clinicappbdas2.model.security.UserRole;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -24,12 +22,12 @@ public class UserRepository {
     private int userId = 1000;
 
     public void register(RegisterRequest request) {
-        final var existingUser = getUserByLogin(request.getLogin());
+        final var existingUser = getUserByLogin(request.getUsername());
         if (existingUser == null) {
             String query = "INSERT INTO USERS (USER_ID, LOGIN, PASSWORD, ID_ROLE) " +
                     "VALUES (?, ?, ?, ?)";
 
-            final var login = request.getLogin();
+            final var login = request.getUsername();
             final var password = passwordEncoder.encode(request.getPassword());
             final var role = request.getRole() == UserRole.ADMIN ? 210008 : 210009;
 
@@ -64,14 +62,14 @@ public class UserRepository {
     }
 
     public void changePassword(NewPasswordRequest request) {
-        String query = "UPDATE UZIVATELE SET PASSWORD = ? " +
+        String query = "UPDATE USERS SET PASSWORD = ? " +
                 "WHERE ID = ?";
 
         jdbcTemplate.update(query, new Object[]{request.getPassword(), request.getId()});
     }
 
     public void resetPassword(User user) {
-        String query = "UPDATE UZIVATELE SET PASSWORD = ? " +
+        String query = "UPDATE USERS SET PASSWORD = ? " +
                 "WHERE ID = ?";
 
         String password = passwordEncoder.encode("secret");
@@ -80,14 +78,14 @@ public class UserRepository {
     }
 
     public void blockUser(User user) {
-        String query = "UPDATE UZIVATELE SET AKTIVNI = 0 " +
+        String query = "UPDATE USERS SET AKTIVNI = 0 " +
                 "WHERE ID = ?";
 
         jdbcTemplate.update(query, new Object[]{user.getId()});
     }
 
     public void unblockUser(User user) {
-        String query = "UPDATE UZIVATELE SET AKTIVNI = 1 " +
+        String query = "UPDATE USERS SET AKTIVNI = 1 " +
                 "WHERE ID = ?";
 
         jdbcTemplate.update(query, new Object[]{user.getId()});

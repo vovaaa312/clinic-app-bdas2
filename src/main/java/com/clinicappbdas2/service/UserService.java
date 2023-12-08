@@ -8,6 +8,7 @@ import com.clinicappbdas2.model.security.User;
 import com.clinicappbdas2.model.security.UserRole;
 import com.clinicappbdas2.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import static java.lang.String.format;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final JdbcTemplate jdbcTemplate;
 
     public void register(RegisterRequest request) {
         userRepository.register(request);
@@ -68,5 +70,9 @@ public class UserService {
         }
 
         userRepository.unblockUser(user);
+    }
+
+    public void changeUserRole(int userId, String roleName) {
+        userRepository.changeUserRole(userId, roleName);
     }
 }

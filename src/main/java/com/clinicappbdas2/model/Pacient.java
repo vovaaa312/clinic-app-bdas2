@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.Date;
 
 @Data
-public class Pacient {
+public class                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Pacient {
     private BigInteger idPacient;
     private BigInteger adresyIdAdresa;
     private String jmeno;

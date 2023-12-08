@@ -24,34 +24,28 @@ public class UserRepository {
     public void register(RegisterRequest request) {
         final var existingUser = getUserByLogin(request.getUsername());
         if (existingUser == null) {
-            String query = "INSERT INTO USERS (USER_ID, LOGIN, PASSWORD, ID_ROLE) " +
-                    "VALUES (?, ?, ?, ?)";
+            // Обратите внимание, что USER_ID больше не включен в запрос
+            String query = "INSERT INTO USERS (LOGIN, PASSWORD, ID_ROLE) " +
+                    "VALUES (?, ?, ?)";
 
             final var login = request.getUsername();
             final var password = passwordEncoder.encode(request.getPassword());
             final var role = request.getRole() == UserRole.ADMIN ? 210008 : 210009;
 
-            final var result = jdbcTemplate.update(connection -> {
+            jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection
                         .prepareStatement(query, new String[]{"USER_ID"});
-                ps.setInt(1, userId++);
-                ps.setString(2, login);
-                ps.setString(3, password);
-                ps.setInt(4, role);
+                ps.setString(1, login);
+                ps.setString(2, password);
+                ps.setInt(3, role);
                 return ps;
             });
-            System.out.println("Registered with ID: " + result);
+
+            System.out.println("User registered");
         }
     }
 
-    // TODO:
-    /**
-     * 1. triggers + sequences for each table to insert id (replace if passed by sequence value)
-     * 2. view `USER join USER_ROLE by roleId`
-     * 3. change `USERS` by view name
-     * 4. change User.getusermapper()
-     *
-     * */
+
     public User getUserByLogin(String login) {
         String query = "SELECT * FROM USERS_VIEW WHERE LOGIN like ?";
         List<User> foundUsers = jdbcTemplate.query(query, new Object[]{login}, User.getUserMapper());
@@ -92,5 +86,9 @@ public class UserRepository {
     }
 
 
+    public void changeUserRole(int userId, String roleName) {
+        String procedureCall = "{call ChangeUsersRole(?, ?)}";
+        jdbcTemplate.update(procedureCall, userId, roleName);
+    }
 }
 

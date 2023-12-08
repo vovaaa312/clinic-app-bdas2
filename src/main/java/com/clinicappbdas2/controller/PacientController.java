@@ -2,6 +2,7 @@ package com.clinicappbdas2.controller;
 
 import com.clinicappbdas2.model.Pacient;
 import com.clinicappbdas2.service.PacientService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,11 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:5173"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/api/pacienti")
+@RequiredArgsConstructor
+
 public class PacientController {
 
-    @Autowired
-    private PacientService pacientService;
+    private final PacientService pacientService;
 
 
     @CrossOrigin

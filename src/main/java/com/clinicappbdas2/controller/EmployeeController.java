@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/zamestnanci-data")
 public class EmployeeController {
 
     private final EmployeeRepository employeeRepository;

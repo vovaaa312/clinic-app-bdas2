@@ -3,7 +3,6 @@ package com.clinicappbdas2.controller;
 import com.clinicappbdas2.configuration.JwtTokenUtil;
 import com.clinicappbdas2.model.request.LoginRequest;
 import com.clinicappbdas2.model.request.RegisterRequest;
-import com.clinicappbdas2.model.response.LoginResponse;
 import com.clinicappbdas2.model.security.User;
 import com.clinicappbdas2.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = {"http://localhost:5173"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationManager authenticationManager;

@@ -5,6 +5,7 @@ import com.clinicappbdas2.model.request.RegisterRequest;
 import com.clinicappbdas2.model.security.User;
 import com.clinicappbdas2.model.security.UserRole;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,10 @@ public class UserRepository {
     private final JdbcTemplate jdbcTemplate;
     private final PasswordEncoder passwordEncoder;
 
-    private int userId = 1000;
+
+    /**
+     * REPLACE PROCEDURE
+     */
 
     public void register(RegisterRequest request) {
         final var existingUser = getUserByLogin(request.getUsername());
@@ -45,7 +49,14 @@ public class UserRepository {
         }
     }
 
+    // TODO:
 
+    /**
+     * 1. triggers + sequences for each table to insert id (replace if passed by sequence value)
+     * 2. view `USER join USER_ROLE by roleId`
+     * 3. change `USERS` by view name
+     * 4. change User.getusermapper()
+     */
     public User getUserByLogin(String login) {
         String query = "SELECT * FROM USERS_VIEW WHERE LOGIN like ?";
         List<User> foundUsers = jdbcTemplate.query(query, new Object[]{login}, User.getUserMapper());
@@ -85,10 +96,17 @@ public class UserRepository {
         jdbcTemplate.update(query, new Object[]{user.getId()});
     }
 
-
-    public void changeUserRole(int userId, String roleName) {
-        String procedureCall = "{call ChangeUsersRole(?, ?)}";
-        jdbcTemplate.update(procedureCall, userId, roleName);
+    public List<User> getAllUsers() {
+        String sql = "SELECT * FROM USERS";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
     }
+
+    public void deleteById(Integer id){
+        String sql = "DELETE FROM USERS WHERE ID = ?";
+        jdbcTemplate.update(sql, id);
+
+    }
+
+
 }
 

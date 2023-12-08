@@ -23,7 +23,7 @@ public class PacientAdressRepository {
     }
 
     public void createPacient(PacientAdresa pacientAdresa){
-        String sql = "CALL VLOZ_PACIENTA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "CALL VLOZ_PACIENT_ADRESA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, pacientAdresa.getJmeno(), pacientAdresa.getPrijmeni(),
                 pacientAdresa.getDatumHospitalizace(), pacientAdresa.getDatumNarozeni(),
                 pacientAdresa.getCisloTelefonu(), pacientAdresa.getPohlavi(),
@@ -42,7 +42,7 @@ public class PacientAdressRepository {
 
     public void updatePacient(PacientAdresa pacientAdresa) {
         SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-                .withProcedureName("UPDATE_PACIENT");
+                .withProcedureName("UPDATE_PACIENT_ADRESA");
 
         MapSqlParameterSource in = new MapSqlParameterSource()
                 .addValue("p_id_pacient", pacientAdresa.getIdPacient())

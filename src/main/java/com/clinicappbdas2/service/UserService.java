@@ -83,6 +83,19 @@ public class UserService {
         return userRepository.getAllUsers();
     }
 
+    public void create(User user) {
+        userRepository.createUser(user);
+    }
+
+    public void update(User user){
+        userRepository.updateUser(user);
+    }
+
+    public User getById(int id){
+        return userRepository.getUserById(id);
+    }
+
     public void delete(int id){userRepository.deleteById(id);}
+
 
 }

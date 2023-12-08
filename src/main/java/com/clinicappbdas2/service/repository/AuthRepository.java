@@ -14,7 +14,7 @@ public class AuthRepository {
     private final JdbcTemplate jdbcTemplate;
 
     public User getUserByLogin(String login) {
-        String query = "SELECT * FROM UZIVATELE WHERE LOGIN like ?";
+        String query = "SELECT * FROM USERS WHERE LOGIN like ?";
         List<User> foundUsers = jdbcTemplate.query(query, new Object[]{login}, User.getUserMapper());
         if (foundUsers.size() != 1) {
             return null;

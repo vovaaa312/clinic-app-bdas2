@@ -14,6 +14,7 @@ public class User implements UserDetails, Serializable {
     private String login;
     private String password;
     private UserRole role;
+    private Integer roleId;
     private String roleName;
 
     public static RowMapper<User> getUserMapper() {
@@ -26,6 +27,20 @@ public class User implements UserDetails, Serializable {
             return user;
         };
     }
+
+    public static RowMapper<User> getUserDataMapper() {
+        return (rs, rowNum) -> {
+            User user = new User();
+            user.setId(rs.getInt("USER_ID"));
+            user.setLogin(rs.getString("LOGIN"));
+            user.setPassword(rs.getString("PASSWORD"));
+            user.setRoleId(rs.getInt("ID_ROLE"));
+            user.setRoleName(rs.getString("NAZEV_ROLE"));
+            return user;
+        };
+    }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

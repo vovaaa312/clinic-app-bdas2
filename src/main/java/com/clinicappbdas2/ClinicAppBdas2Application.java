@@ -1,9 +1,7 @@
 package com.clinicappbdas2;
 
-import com.clinicappbdas2.service.repository.OddeleniRepository;
-import com.clinicappbdas2.service.repository.PacientAdressRepository;
-import com.clinicappbdas2.service.repository.PacientRepository;
-import com.clinicappbdas2.service.repository.ZamestnanecRepository;
+import com.clinicappbdas2.model.views.PacientAdresa;
+import com.clinicappbdas2.service.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +18,9 @@ public class ClinicAppBdas2Application implements CommandLineRunner {
     PacientAdressRepository repo;
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(repo.getAllPacients());
-        System.out.println(repo.getPacientById(80240));
+        PacientAdresa pacient = repo.getPacientById(80240);
+        System.out.println(pacient);
+        pacient.setJmeno("XUUUUUUUC");
+        repo.updatePacient(pacient);
     }
 }

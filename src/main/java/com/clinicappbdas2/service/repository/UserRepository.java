@@ -5,7 +5,6 @@ import com.clinicappbdas2.model.request.RegisterRequest;
 import com.clinicappbdas2.model.security.User;
 import com.clinicappbdas2.model.security.UserRole;
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -46,6 +45,24 @@ public class UserRepository {
             });
 
             System.out.println("User registered");
+        }
+    }
+
+    public void createUser(User user){
+        final var existingUser = getUserByLogin(user.getLogin());
+        if (existingUser==null){
+            String sql = "INSERT INTO USERS (LOGIN, PASSWORD, ID_ROLE) VALUES (?, ?, ?)";
+            final var password = passwordEncoder.encode(user.getPassword());
+            jdbcTemplate.update(connection -> {
+                PreparedStatement ps = connection
+                        .prepareStatement(sql, new String[]{"USER_ID"});
+                ps.setString(1, user.getLogin());
+                ps.setString(2, password);
+                ps.setInt(3, roleValueOf(user.getRoleName()));
+                return ps;
+            });
+            System.out.println("User created");
+
         }
     }
 
@@ -101,20 +118,44 @@ public class UserRepository {
     }
 
     public List<User> getAllUsers() {
-        String sql = "SELECT * FROM USERS";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        String sql = "SELECT USER_ID, LOGIN, PASSWORD, ID_ROLE, NAZEV_ROLE FROM USERS_VIEW";
+        return jdbcTemplate.query(sql, User.getUserDataMapper());
+    }
+
+    public User getUserById(Integer id){
+        String sql = "SELECT USER_ID, LOGIN, PASSWORD, ID_ROLE, NAZEV_ROLE FROM USERS_VIEW WHERE USER_ID = ?";
+        return jdbcTemplate.queryForObject(
+                sql,
+                new Object[]{id},
+                User.getUserDataMapper()
+        );
+    }
+
+    public void updateUser(User user){
+        String sql = "UPDATE USERS SET  LOGIN=?, PASSWORD=?, ID_ROLE=? WHERE USER_ID=?";
+        jdbcTemplate.update(sql,
+                user.getLogin(), user.getPassword(), user.getRoleId(), user.getId());
     }
 
     public void deleteById(Integer id){
-        String sql = "DELETE FROM USERS WHERE ID = ?";
+        String sql = "DELETE FROM USERS WHERE USER_ID = ?";
         jdbcTemplate.update(sql, id);
 
     }
-
-
     public void changeUserRole(int userId, String roleName) {
         String procedureCall = "{call ChangeUsersRole(?, ?)}";
         jdbcTemplate.update(procedureCall, userId, roleName);
+    }
+
+    private Integer roleValueOf(String roleName){
+        switch (roleName){
+            case "ADMIN": return 210008;
+            case "UZIVATEL": return 210009;
+            case "ZAMESTNANEC":return 210010;
+            case "ZAMESTNANEC_NADRIZENY":return 210011;
+            default: return 210009;
+        }
+
     }
 }
 

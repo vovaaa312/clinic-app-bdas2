@@ -8,20 +8,22 @@ import java.util.Date;
 
 @Data
 public class PacientAdresa {
-    private int idAdresa;
+    private Integer idPacient;
+    private Integer idAdresa;
     private String jmeno;
     private String prijmeni;
     private Date datumHospitalizace;
     private Date datumNarozeni;
-    private int cisloTelefonu;
+    private Integer cisloTelefonu;
     private String pohlavi;
     private String zeme;
     private String mesto;
     private String adresa;
-    private int psc;
+    private Integer psc;
 
     public PacientAdresa getMapRow(ResultSet rs, int rowNum) throws SQLException {
         PacientAdresa pacientAdresa = new PacientAdresa();
+        pacientAdresa.setIdPacient(rs.getInt("ID_PACIENT"));
         pacientAdresa.setIdAdresa(rs.getInt("ID_ADRESA"));
         pacientAdresa.setJmeno(rs.getString("JMENO"));
         pacientAdresa.setPrijmeni(rs.getString("PRIJMENI"));

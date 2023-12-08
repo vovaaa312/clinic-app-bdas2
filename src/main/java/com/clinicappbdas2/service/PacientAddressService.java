@@ -1,42 +1,37 @@
 package com.clinicappbdas2.service;
 
-import com.clinicappbdas2.model.Pacient;
 import com.clinicappbdas2.model.views.PacientAdresa;
-import com.clinicappbdas2.service.repository.PacientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.clinicappbdas2.service.repository.PacientAdressRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PacientAddressService {
 
-    PacientRepository pacientRepository;
 
-    @Autowired
-    public PacientAddressService(PacientRepository pacientAdressRepository) {
-        this.pacientRepository = pacientAdressRepository;
+    private final PacientAdressRepository pacientAdressRepository;
+
+
+    public List<PacientAdresa> getAll() {
+        return pacientAdressRepository.getAllPacients();
     }
 
-    public List<Pacient> findAll(){
-        return pacientRepository.getAll();
+    public PacientAdresa getById(int id) {
+        return pacientAdressRepository.getPacientById(id);
     }
 
-    public Pacient getById(int id){
-        return pacientRepository.getById(id);
+    public void save(PacientAdresa pacientAdresa) {
+        pacientAdressRepository.createPacient(pacientAdresa);
     }
 
-    public void save(PacientAdresa pacientAdresa){
-        pacientRepository.savePacientProcedure(
-                pacientAdresa.getJmeno(),
-                pacientAdresa.getPrijmeni(),
-                pacientAdresa.getDatumHospitalizace(),
-                pacientAdresa.getDatumNarozeni(),
-                pacientAdresa.getCisloTelefonu(),
-                pacientAdresa.getPohlavi(),
-                pacientAdresa.getZeme(),
-                pacientAdresa.getMesto(),
-                pacientAdresa.getAdresa(),
-                pacientAdresa.getPsc()
-        );    }
+    public void delete(int id) {
+        pacientAdressRepository.deletePacient(id);
+    }
+
+    public void update(PacientAdresa pacientAdresa) {
+        pacientAdressRepository.updatePacient(pacientAdresa);
+    }
 }

@@ -2,21 +2,17 @@ package com.clinicappbdas2.service;
 
 import com.clinicappbdas2.model.Pacient;
 import com.clinicappbdas2.service.repository.PacientRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PacientService {
 
-    private PacientRepository pacientRepository;
-
-    @Autowired
-    public PacientService(PacientRepository pacientRepository) {
-        this.pacientRepository = pacientRepository;
-    }
-
+    private final PacientRepository pacientRepository;
 
     public List<Pacient> getAll() {
         return pacientRepository.getAll();

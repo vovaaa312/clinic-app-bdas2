@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static java.lang.String.format;
 
 @Service
@@ -69,4 +71,10 @@ public class UserService {
 
         userRepository.unblockUser(user);
     }
+
+    public List<User> getAll(){
+        return userRepository.getAllUsers();
+    }
+
+    public void delete(int id){userRepository.deleteById(id);}
 }

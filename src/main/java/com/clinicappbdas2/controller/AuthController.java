@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -49,4 +50,18 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    @PreAuthorize("hasRole('ADMIN')") // Проверка, что пользователь является администратором
+    @PostMapping("/changeUserRole")
+    public ResponseEntity<?> changeUserRole(@RequestParam int userId, @RequestParam String roleName) {
+        try {
+            userService.changeUserRole(userId, roleName);
+            return ResponseEntity.ok().body("User role successfully updated.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
+
 }

@@ -18,9 +18,6 @@ public class ClinicAppBdas2Application implements CommandLineRunner {
     PacientAdressRepository repo;
     @Override
     public void run(String... args) throws Exception {
-        PacientAdresa pacient = repo.getPacientById(80240);
-        System.out.println(pacient);
-        pacient.setJmeno("XUUUUUUUC");
-        repo.updatePacient(pacient);
+
     }
 }

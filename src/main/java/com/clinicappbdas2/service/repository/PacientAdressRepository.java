@@ -19,7 +19,7 @@ public class PacientAdressRepository {
 
     public List<PacientAdresa> getAllPacients(){
         String sql = "SELECT * FROM PACIENTI_VIEW";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PacientAdresa.class));
+        return jdbcTemplate.query(sql, new PacientAddressMapper());
     }
 
     public void createPacient(PacientAdresa pacientAdresa){

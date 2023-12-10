@@ -1,6 +1,5 @@
 package com.clinicappbdas2;
 
-import com.clinicappbdas2.model.views.PacientAdresa;
 import com.clinicappbdas2.service.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,9 +14,9 @@ public class ClinicAppBdas2Application implements CommandLineRunner {
     }
 
     @Autowired
-    PacientAdressRepository repo;
+    PacientAnalyzaRepository repo;
     @Override
     public void run(String... args) throws Exception {
-
+        System.out.println(repo.getAllAnalysis());
     }
 }

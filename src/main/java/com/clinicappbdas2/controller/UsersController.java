@@ -4,6 +4,7 @@ import com.clinicappbdas2.model.security.User;
 import com.clinicappbdas2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class UsersController {
 
     @CrossOrigin
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<User>> getAll() {
         return ResponseEntity.ok(userService.getAll());
     }
@@ -33,7 +35,7 @@ public class UsersController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<User> updatePacient(@PathVariable int id, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
         userService.update(user);
         return ResponseEntity.ok(user);
     }

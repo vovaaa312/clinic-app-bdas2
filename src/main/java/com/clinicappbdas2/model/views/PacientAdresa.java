@@ -16,6 +16,8 @@ public class PacientAdresa {
     private Date datumNarozeni;
     private Integer cisloTelefonu;
     private String pohlavi;
+
+
     private String zeme;
     private String mesto;
     private String adresa;

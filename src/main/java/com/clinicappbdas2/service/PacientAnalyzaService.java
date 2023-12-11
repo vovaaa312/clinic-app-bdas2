@@ -17,7 +17,7 @@ public class PacientAnalyzaService {
     }
 
     public void save(PacientAnalyza pacient) {
-        repository.createAnalysis(pacient);
+        repository.save(pacient);
     }
 
 

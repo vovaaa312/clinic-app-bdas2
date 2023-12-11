@@ -1,7 +1,5 @@
 package com.clinicappbdas2.service.repository;
 
-import com.clinicappbdas2.model.views.PacientAddressMapper;
-import com.clinicappbdas2.model.views.PacientAdresa;
 import com.clinicappbdas2.model.views.PacientAnalyzaMapper;
 import com.clinicappbdas2.model.views.PacientAnalyza;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +19,7 @@ public class PacientAnalyzaRepository {
         return jdbcTemplate.query(sql, new PacientAnalyzaMapper());
     }
 
-    public void createAnalysis(PacientAnalyza pacient){
+    public void save(PacientAnalyza pacient){
         String sql = "CALL VLOZ_ANALYZU(?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(
                 sql,

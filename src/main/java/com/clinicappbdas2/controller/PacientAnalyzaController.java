@@ -1,6 +1,5 @@
 package com.clinicappbdas2.controller;
 
-import com.clinicappbdas2.model.views.PacientAdresa;
 import com.clinicappbdas2.model.views.PacientAnalyza;
 import com.clinicappbdas2.service.PacientAnalyzaService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,7 @@ public class PacientAnalyzaController {
     }
 
     @PostMapping
-    public void create(@RequestBody PacientAnalyza pacient) {
+    public void save(@RequestBody PacientAnalyza pacient) {
         pacientService.save(pacient);
     }
 
@@ -36,8 +35,9 @@ public class PacientAnalyzaController {
 
 
 
+
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deletePacient(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> deleteAnalysis(@PathVariable int id) {
         pacientService.deleteAnalysis(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

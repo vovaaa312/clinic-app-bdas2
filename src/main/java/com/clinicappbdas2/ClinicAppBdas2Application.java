@@ -17,10 +17,10 @@ public class ClinicAppBdas2Application implements CommandLineRunner {
     }
 
     @Autowired
-    PacientKartaRepository repo;
+    OddeleniRepository repo;
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(repo.getAll());
+        System.out.println(repo.getIdByNazev("Chirurgie"));
 
     }
 }

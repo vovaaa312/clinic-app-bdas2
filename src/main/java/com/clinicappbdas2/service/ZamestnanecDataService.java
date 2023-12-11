@@ -1,6 +1,7 @@
 package com.clinicappbdas2.service;
 
 import com.clinicappbdas2.model.views.ZamestnanecData;
+import com.clinicappbdas2.service.repository.OddeleniRepository;
 import com.clinicappbdas2.service.repository.ZamestnanecDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ import java.util.List;
 public class ZamestnanecDataService {
 
     private final ZamestnanecDataRepository zamestnanecDataRepository;
+
+    private final OddeleniRepository oddeleniRepository;
 
 
 
@@ -32,6 +35,7 @@ public class ZamestnanecDataService {
     }
 
     public void update(ZamestnanecData zamestnanecData){
+        zamestnanecData.setIdOddeleni(oddeleniRepository.getIdByNazev(zamestnanecData.getNazevOddeleni()));
         zamestnanecDataRepository.updateZamestnanec(zamestnanecData);
     }
 }

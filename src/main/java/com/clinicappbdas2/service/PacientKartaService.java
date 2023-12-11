@@ -1,6 +1,7 @@
 package com.clinicappbdas2.service;
 
 import com.clinicappbdas2.model.views.PacientKarta;
+import com.clinicappbdas2.service.repository.OddeleniRepository;
 import com.clinicappbdas2.service.repository.PacientKartaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,19 +13,32 @@ import java.util.List;
 public class PacientKartaService {
     private final PacientKartaRepository repository;
 
+    private final OddeleniRepository oddeleniRepository;
+
     public List<PacientKarta> getAll() {
         return repository.getAll();
     }
 
-    public void create(PacientKarta pacient) {
-        repository.create(pacient);
+    public void save(PacientKarta pacient) {
+        repository.save(pacient);
     }
 
     public void update(PacientKarta pacientKarta) {
+        pacientKarta.setIdOddeleni(oddeleniRepository.getIdByNazev(pacientKarta.getNazevOddeleni()));
         repository.update(pacientKarta);
     }
 
-    public void deleteById(Integer id) {
-        repository.deleteById(id);
+
+    public void deleteByKartaId(Integer id) {
+        repository.deleteByKartaId(id);
     }
+
+    public List <PacientKarta> getByPacientId(Integer id){
+        return repository.getByPacientId(id);
+    }
+
+    public PacientKarta getByKartaId(Integer id){
+        return repository.getByKartaId(id);
+    }
+
 }

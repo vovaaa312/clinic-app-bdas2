@@ -13,14 +13,14 @@ public class PacientAnalyza {
     private String jmeno;
     private String prijmeni;
     private String pohlavi;
-    private Long cisloTelefonu;
+    private Long    cisloTelefonu;
     private Integer idKarta;
     private Integer idAnalyza;
     private Integer RBC;
     private Integer WBC;
     private Integer HGB;
     private Integer PLT;
-    private Date datum;
+    private Date    datum;
 
 
 }

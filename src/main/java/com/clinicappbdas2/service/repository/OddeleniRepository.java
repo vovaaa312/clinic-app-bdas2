@@ -27,4 +27,10 @@ public class OddeleniRepository {
                 BeanPropertyRowMapper.newInstance(Oddeleni.class));
     }
 
+    public Integer getIdByNazev(String nazev) {
+        Oddeleni odd =  jdbcTemplate.queryForObject("SELECT ID_ODDELENI FROM ODDELENI WHERE NAZEV_ODDELENI =?",
+                BeanPropertyRowMapper.newInstance(Oddeleni.class), nazev);
+        return odd.getIdOddeleni();
+    }
+
 }

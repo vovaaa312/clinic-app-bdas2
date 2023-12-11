@@ -20,6 +20,7 @@ public class PacientAnalyzaRepository {
     }
 
     public void save(PacientAnalyza pacient){
+
         String sql = "CALL VLOZ_ANALYZU(?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(
                 sql,

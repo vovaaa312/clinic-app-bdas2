@@ -2,6 +2,7 @@ package com.clinicappbdas2.service;
 
 import com.clinicappbdas2.model.exception.AccessProhibitedException;
 import com.clinicappbdas2.model.exception.ServiceException;
+import com.clinicappbdas2.model.request.ChangeRoleRequest;
 import com.clinicappbdas2.model.request.NewPasswordRequest;
 import com.clinicappbdas2.model.request.RegisterRequest;
 import com.clinicappbdas2.model.security.User;
@@ -78,8 +79,8 @@ public class UserService {
     }
 
 
-    public void changeUserRole(int userId, String roleName) {
-        userRepository.changeUserRole(userId, roleName);
+    public void changeUserRole(Integer id, String roleName) {
+        userRepository.changeUserRole(id,roleName);
     }
 
     public List<User> getAll(){

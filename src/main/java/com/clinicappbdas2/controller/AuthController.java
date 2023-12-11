@@ -31,6 +31,9 @@ public class AuthController {
         userService.register(registerRequest);
     }
 
+
+
+
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody LoginRequest request) {
         try {
@@ -61,6 +64,8 @@ public class AuthController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+
 
 
 

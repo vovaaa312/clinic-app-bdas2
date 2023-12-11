@@ -1,5 +1,6 @@
 package com.clinicappbdas2.controller;
 
+import com.clinicappbdas2.model.request.ChangeRoleRequest;
 import com.clinicappbdas2.model.security.User;
 import com.clinicappbdas2.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -55,4 +56,12 @@ public class UsersController {
         userService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+
+    @PostMapping("/changerole")
+    public void changeUserRole(@RequestBody ChangeRoleRequest request) {
+        userService.changeUserRole(request.getUserId(),request.getRoleName());
+//        return ResponseEntity.ok(request);
+    }
+
 }

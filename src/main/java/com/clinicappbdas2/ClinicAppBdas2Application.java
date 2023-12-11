@@ -1,6 +1,7 @@
 package com.clinicappbdas2;
 
 import com.clinicappbdas2.model.views.PacientAnalyza;
+import com.clinicappbdas2.service.UserService;
 import com.clinicappbdas2.service.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,12 +16,12 @@ public class ClinicAppBdas2Application implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(ClinicAppBdas2Application.class, args);
     }
-
-    @Autowired
-    OddeleniRepository repo;
+//
+//    @Autowired
+//    UserRepository  repo;
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(repo.getIdByNazev("Chirurgie"));
+//        repo.setPacientUser(80384,180024);
 
     }
 }

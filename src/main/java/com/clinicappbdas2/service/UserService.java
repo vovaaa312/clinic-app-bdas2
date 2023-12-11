@@ -50,6 +50,9 @@ public class UserService {
         userRepository.changePassword(request);
     }
 
+    public void setPacientUser(int pacientId, int userId){
+        userRepository.setPacientUser(pacientId,userId);
+    }
     public void resetPassword(User user){
         if (user.getRole() != UserRole.USER){
             throw new ServiceException("It's forbidden to reset passwords for admins");

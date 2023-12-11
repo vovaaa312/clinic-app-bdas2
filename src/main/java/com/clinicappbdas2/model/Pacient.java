@@ -8,13 +8,13 @@ import java.util.Date;
 
 @Data
 public class Pacient {
-    private Integer idPacient;
-    private Integer idAdresa;
+    private Long idPacient;
+    private Long idAdresa;
     private String jmeno;
     private String prijmeni;
     private Date datumHospitalizace;
     private Date datumNarozeni;
-    private Integer cisloTelefonu; // Используйте BigInteger если значения могут быть очень большими
+    private Long cisloTelefonu; // Используйте BigInteger если значения могут быть очень большими
     private String pohlavi;
 
 
@@ -22,7 +22,7 @@ public class Pacient {
     public Pacient() {
     }
 
-    public Pacient(Integer id_adresa, String jmeno, String prijmeni, Date datumHospitalizace, Date datumNarozeni, Integer cisloTelefonu, String pohlavi) {
+    public Pacient(Long id_adresa, String jmeno, String prijmeni, Date datumHospitalizace, Date datumNarozeni, Long cisloTelefonu, String pohlavi) {
         this.idAdresa = id_adresa;
         this.jmeno = jmeno;
         this.prijmeni = prijmeni;
@@ -35,8 +35,8 @@ public class Pacient {
     public static RowMapper<Pacient> getUserMapper() {
         return (rs, rowNum) -> {
             Pacient pacient = new Pacient();
-            pacient.setIdPacient(rs.getInt("ID_PACIENT"));
-            pacient.setIdAdresa(rs.getInt("ID_ADRESA"));
+            pacient.setIdPacient(rs.getLong("ID_PACIENT"));
+            pacient.setIdAdresa(rs.getLong("ID_ADRESA"));
             pacient.setJmeno(rs.getString("JMENO"));
             pacient.setPrijmeni(rs.getString("PRIJMENI"));
             pacient.setPohlavi(rs.getString("POHLAVI"));

@@ -33,7 +33,7 @@ public class UserRepository {
 
             final var login = request.getUsername();
             final var password = passwordEncoder.encode(request.getPassword());
-            final var role = request.getRole() == UserRole.ADMIN ? 210008 : 210009;
+            final var role = request.getRole().equals("ADMIN") ? 210008 : 210009;
 
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection
@@ -145,6 +145,11 @@ public class UserRepository {
     public void changeUserRole(int userId, String roleName) {
         String procedureCall = "{call ChangeUsersRole(?, ?)}";
         jdbcTemplate.update(procedureCall, userId, roleName);
+    }
+
+    public void setPacientUser(int pacientId, int userId){
+        String procedureCall = "{call NASTAV_PACIENT_USER(?, ?)}";
+        jdbcTemplate.update(procedureCall, pacientId, userId);
     }
 
     private Integer roleValueOf(String roleName){

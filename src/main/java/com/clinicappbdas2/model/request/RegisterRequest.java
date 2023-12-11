@@ -7,5 +7,5 @@ import lombok.Value;
 public class RegisterRequest {
     String username;
     String password;
-    UserRole role;
+    String role;
 }

@@ -27,6 +27,12 @@ public class PacientAnalyzaController {
         pacientService.save(pacient);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<PacientAnalyza> updateAnalyza(@RequestBody PacientAnalyza analyza){
+       // pacientService.update(analyza);
+        return ResponseEntity.ok(analyza);
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<PacientAnalyza> getByAnalysisId(@PathVariable Integer id) {
         PacientAnalyza pacient = pacientService.getByAnalysisId(id);

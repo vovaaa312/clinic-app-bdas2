@@ -2,7 +2,6 @@ package com.clinicappbdas2.model.views;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -19,10 +18,10 @@ public class PacientAnalyzaMapper implements RowMapper<PacientAnalyza> {
         pacient.setIdKarta(rs.getInt("ID_KARTA"));
         pacient.setIdAnalyza(rs.getInt("ID_ANALYZA"));
 
-        pacient.setRBC(rs.getInt("RBC"));
-        pacient.setWBC(rs.getInt("WBC"));
-        pacient.setHGB(rs.getInt("HGB"));
-        pacient.setPLT(rs.getInt("PLT"));
+        pacient.setRbc(rs.getString("RBC"));
+        pacient.setWbc(rs.getString("WBC"));
+        pacient.setHgb(rs.getString("HGB"));
+        pacient.setPlt(rs.getString("PLT"));
         pacient.setDatum(rs.getDate("DATUM"));
 
         return pacient;

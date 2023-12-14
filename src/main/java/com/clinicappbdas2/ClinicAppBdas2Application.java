@@ -16,12 +16,9 @@ public class ClinicAppBdas2Application implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(ClinicAppBdas2Application.class, args);
     }
-//
-//    @Autowired
-//    UserRepository  repo;
+
     @Override
     public void run(String... args) throws Exception {
-//        repo.setPacientUser(80384,180024);
 
     }
 }

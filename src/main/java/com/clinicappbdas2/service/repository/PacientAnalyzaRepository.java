@@ -26,13 +26,15 @@ public class PacientAnalyzaRepository {
                 sql,
                 pacient.getJmeno(),
                 pacient.getPrijmeni(),
-                pacient.getCisloTelefonu(),
+                pacient.getPohlavi(),
                 pacient.getDatum(),
-                pacient.getRBC(),
-                pacient.getWBC(),
-                pacient.getHGB(),
-                pacient.getPLT());
+                pacient.getRbc(),
+                pacient.getWbc(),
+                pacient.getHgb(),
+                pacient.getPlt());
     }
+
+
 
     public List<PacientAnalyza> getByPacientId(Integer id){
         String sql = "SELECT * FROM PACIENTI_ANALYZY_VIEW WHERE ID_PACIENT = ?";

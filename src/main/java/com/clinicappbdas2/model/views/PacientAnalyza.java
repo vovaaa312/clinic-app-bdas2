@@ -2,8 +2,6 @@ package com.clinicappbdas2.model.views;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 
 @Data
@@ -16,10 +14,10 @@ public class PacientAnalyza {
     private String pohlavi;
     private Integer idKarta;
     private Integer idAnalyza;
-    private Integer RBC;
-    private Integer WBC;
-    private Integer HGB;
-    private Integer PLT;
+    private String rbc;
+    private String wbc;
+    private String hgb;
+    private String plt;
     private Date datum;
 
 

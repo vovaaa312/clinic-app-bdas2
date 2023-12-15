@@ -1,6 +1,6 @@
 package com.clinicappbdas2.service.repository;
 
-import com.clinicappbdas2.model.views.PacientAnalyzaMapper;
+import com.clinicappbdas2.model.mapper.PacientAnalyzaMapper;
 import com.clinicappbdas2.model.views.PacientAnalyza;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;

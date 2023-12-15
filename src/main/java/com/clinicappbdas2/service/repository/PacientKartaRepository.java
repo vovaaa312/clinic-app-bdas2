@@ -1,7 +1,7 @@
 package com.clinicappbdas2.service.repository;
 
 import com.clinicappbdas2.model.views.PacientKarta;
-import com.clinicappbdas2.model.views.PacientKartaMapper;
+import com.clinicappbdas2.model.mapper.PacientKartaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

@@ -1,8 +1,7 @@
 package com.clinicappbdas2.service.repository;
 
 import com.clinicappbdas2.model.views.Employee;
-import com.clinicappbdas2.model.views.EmployeeMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.clinicappbdas2.model.mapper.EmployeeMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import lombok.RequiredArgsConstructor;

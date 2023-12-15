@@ -1,9 +1,8 @@
 package com.clinicappbdas2.service.repository;
 
-import com.clinicappbdas2.model.views.PacientAddressMapper;
+import com.clinicappbdas2.model.mapper.PacientAddressMapper;
 import com.clinicappbdas2.model.views.PacientAdresa;
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;

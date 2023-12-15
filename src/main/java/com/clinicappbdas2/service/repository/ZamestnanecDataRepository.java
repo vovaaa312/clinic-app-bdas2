@@ -1,7 +1,7 @@
 package com.clinicappbdas2.service.repository;
 
 import com.clinicappbdas2.model.views.ZamestnanecData;
-import com.clinicappbdas2.model.views.ZamestnanecDataMapper;
+import com.clinicappbdas2.model.mapper.ZamestnanecDataMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

@@ -1,5 +1,6 @@
-package com.clinicappbdas2.model.views;
+package com.clinicappbdas2.model.mapper;
 
+import com.clinicappbdas2.model.views.PacientAnalyza;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

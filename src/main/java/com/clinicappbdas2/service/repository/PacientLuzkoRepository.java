@@ -32,15 +32,13 @@ public class PacientLuzkoRepository {
     }
 
     public void save (PacientLuzko luzko){
-        String sql = "CALL VLOZ_LUZKO(?,?,?,?,?)";
+        String sql = "CALL VLOZ_LUZKO(?,?)";
         jdbcTemplate.update(
                 sql,
                 luzko.getIdPokoj(),
-                luzko.getIdPacient(),
-                luzko.getDatumRezervace(),
-                luzko.getDatumPropusteni(),
                 luzko.getCislo()
         );
+
     }
     public void releaseLuzko(Integer id){
         String sql = "CALL UVOLNI_LUZKO(?)";
@@ -48,14 +46,14 @@ public class PacientLuzkoRepository {
     }
 
 
-    public void pridejLuzkoPacientovi(Integer luzkoId, Integer pacientId, Date datumRezervace){
-        String sql = "CALL VLOZ_PACIENTA_V_LUZKO(?,?,?)";
-        jdbcTemplate.update(sql, luzkoId, pacientId, datumRezervace);
+    public void rezervaceLuzka(Integer luzkoId, Integer pacientId, Date datumRezervace, Date datumPropusteni){
+        String sql = "CALL REZERVACE_LUZKA(?,?,?,?)";
+        jdbcTemplate.update(sql, luzkoId, pacientId, datumRezervace, datumPropusteni);
 
     }
 
     public void delete(Integer id){
-        String sql = "DELETE FROM LUZKA WHERE ID = ?";
+        String sql = "DELETE FROM LUZKA WHERE ID_LUZKO = ?";
         jdbcTemplate.update(sql,id);
     }
 

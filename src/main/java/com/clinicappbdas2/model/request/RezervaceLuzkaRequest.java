@@ -5,8 +5,9 @@ import lombok.Value;
 import java.util.Date;
 
 @Value
-public class PridejLuzkoPacientoviRequest {
-     int luzkoId;
-     int pacientId;
+public class RezervaceLuzkaRequest {
+     int  luzkoId;
+     int  pacientId;
      Date datumRezervace;
+     Date datumPropusteni;
 }

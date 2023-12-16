@@ -1,6 +1,6 @@
 package com.clinicappbdas2.controller;
 
-import com.clinicappbdas2.model.request.PridejLuzkoPacientoviRequest;
+import com.clinicappbdas2.model.request.RezervaceLuzkaRequest;
 import com.clinicappbdas2.model.views.PacientLuzko;
 import com.clinicappbdas2.service.PacientLuzkoService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class PacientLuzkoController {
         return ResponseEntity.ok(luzkoService.getAll());
     }
 
-    @PostMapping
+    @PostMapping()
     public void createLuzko(@RequestBody PacientLuzko luzko) {
         luzkoService.save(luzko);
     }
@@ -47,10 +47,10 @@ public class PacientLuzkoController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/pridej-pacienta")
-    public ResponseEntity<PridejLuzkoPacientoviRequest> pridejLuzkoPacientovi(@RequestBody PridejLuzkoPacientoviRequest luzko) {
-        luzkoService.pridejLuzkoPacientovi(luzko);
-        return ResponseEntity.ok(luzko);
+    @PostMapping("rezervace-luzka")
+    public ResponseEntity<Void> rezervaceLuzka(@RequestBody RezervaceLuzkaRequest luzko) {
+        luzkoService.rezervaceLuzka(luzko);
+        return ResponseEntity.ok().build();
 
     }
 

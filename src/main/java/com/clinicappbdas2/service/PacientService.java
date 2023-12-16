@@ -4,6 +4,7 @@ import com.clinicappbdas2.model.Pacient;
 import com.clinicappbdas2.service.repository.PacientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 public class PacientService {
 
     private final PacientRepository pacientRepository;
+    private final JdbcTemplate jdbcTemplate;
 
     public List<Pacient> getAll() {
         return pacientRepository.getAll();
@@ -43,5 +45,12 @@ public class PacientService {
 
     public List<Pacient> getByCisloTelefonu(Integer cisloTelefonu) {
         return pacientRepository.getByCisloTelefonu(cisloTelefonu);
+    }
+
+    public double calculateAverageAge() {
+        return jdbcTemplate.queryForObject(
+                "SELECT vypocitat_prumerny_vek_pacientu() FROM dual",
+                Double.class
+        );
     }
 }

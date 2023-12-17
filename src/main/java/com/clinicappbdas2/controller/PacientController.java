@@ -30,15 +30,16 @@ public class PacientController {
 
     @PostMapping
     public void createPacient(@RequestBody Pacient pacient) {
-         pacientService.save(pacient);
+        pacientService.save(pacient);
     }
 
 
     @GetMapping("{id}")
-    public ResponseEntity<Pacient> getPacientById(@PathVariable Integer id){
-       Pacient pacient=   pacientService.getById(id);
+    public ResponseEntity<Pacient> getPacientById(@PathVariable Integer id) {
+        Pacient pacient = pacientService.getById(id);
         return ResponseEntity.ok(pacient);
     }
+
     @PutMapping("{id}")
     public ResponseEntity<Pacient> updatePacient(@PathVariable int id, @RequestBody Pacient pacient) {
         pacientService.update(pacient);
@@ -46,11 +47,15 @@ public class PacientController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deletePacient(@PathVariable int id){
+    public ResponseEntity<HttpStatus> deletePacient(@PathVariable int id) {
         //pacientService.getById(id);
         pacientService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
     }
 
+    @GetMapping("/average-age")
+    public ResponseEntity<Double> getAverageAge() {
+        double averageAge = pacientService.calculateAverageAge();
+        return ResponseEntity.ok(averageAge);
+    }
 }

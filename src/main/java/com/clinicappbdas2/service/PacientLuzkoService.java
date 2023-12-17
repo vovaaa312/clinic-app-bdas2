@@ -4,6 +4,7 @@ import com.clinicappbdas2.model.request.RezervaceLuzkaRequest;
 import com.clinicappbdas2.model.views.PacientLuzko;
 import com.clinicappbdas2.service.repository.PacientLuzkoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PacientLuzkoService {
     private final PacientLuzkoRepository luzkoRepository;
+    private final JdbcTemplate jdbcTemplate;
 
     public List<PacientLuzko> getAll() {
         return luzkoRepository.getAll();
@@ -43,5 +45,13 @@ public class PacientLuzkoService {
 
     public void delete(Integer id){
         luzkoRepository.delete(id);
+    }
+
+    public int getAvailableBeds(int oddelId) {
+        return jdbcTemplate.queryForObject(
+                "SELECT get_volna_luzka_pocet(?) FROM dual",
+                new Object[]{oddelId},
+                Integer.class
+        );
     }
 }

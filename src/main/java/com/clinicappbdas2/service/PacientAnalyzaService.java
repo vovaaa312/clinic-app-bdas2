@@ -20,7 +20,9 @@ public class PacientAnalyzaService {
         repository.save(pacient);
     }
 
-    public void updateAnalyza(PacientAnalyza analyza){}
+    public void updateAnalyza(PacientAnalyza analyza){
+        repository.updateAnalyza(analyza);
+    }
 
     public List<PacientAnalyza> getByPacientId(Integer id) {
         return repository.getByPacientId(id);

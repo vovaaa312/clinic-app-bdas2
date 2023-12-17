@@ -14,24 +14,24 @@ import java.util.List;
 public class PacientLuzkoRepository {
     private final JdbcTemplate jdbcTemplate;
 
-    public List<PacientLuzko> getAll(){
+    public List<PacientLuzko> getAll() {
         String sql = "SELECT * FROM PACIENTI_LUZKA_VIEW";
         return jdbcTemplate.query(sql, new PacientLuzkoMapper());
     }
 
-    public List<PacientLuzko> getLuzkaByPokojId(Integer id){
+    public List<PacientLuzko> getLuzkaByPokojId(Integer id) {
         String sql = "SELECT * FROM PACIENTI_LUZKA_VIEW WHERE ID_POKOJ = ?";
         return jdbcTemplate.query(sql, new Object[]{id}, new PacientLuzkoMapper());
 
     }
 
-    public PacientLuzko getByLuzkoId(Integer id){
+    public PacientLuzko getByLuzkoId(Integer id) {
         String sql = "SELECT * FROM PACIENTI_LUZKA_VIEW WHERE ID_LUZKO = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new PacientLuzkoMapper());
 
     }
 
-    public void save (PacientLuzko luzko){
+    public void save(PacientLuzko luzko) {
         String sql = "CALL VLOZ_LUZKO(?,?)";
         jdbcTemplate.update(
                 sql,
@@ -40,21 +40,22 @@ public class PacientLuzkoRepository {
         );
 
     }
-    public void releaseLuzko(Integer id){
+
+    public void releaseLuzko(Integer id) {
         String sql = "CALL UVOLNI_LUZKO(?)";
         jdbcTemplate.update(sql, id);
     }
 
 
-    public void rezervaceLuzka(Integer luzkoId, Integer pacientId, Date datumRezervace, Date datumPropusteni){
+    public void rezervaceLuzka(Integer luzkoId, Integer pacientId, Date datumRezervace, Date datumPropusteni) {
         String sql = "CALL REZERVACE_LUZKA(?,?,?,?)";
         jdbcTemplate.update(sql, luzkoId, pacientId, datumRezervace, datumPropusteni);
 
     }
 
-    public void delete(Integer id){
+    public void delete(Integer id) {
         String sql = "DELETE FROM LUZKA WHERE ID_LUZKO = ?";
-        jdbcTemplate.update(sql,id);
+        jdbcTemplate.update(sql, id);
     }
 
 
@@ -68,5 +69,13 @@ public class PacientLuzkoRepository {
                 luzko.getDatumRezervace(),
                 luzko.getDatumPropusteni());
 
+    }
+
+    public int getAvailableBeds(Long oddelId) {
+        return jdbcTemplate.queryForObject(
+                "SELECT get_volna_luzka_pocet(?) FROM dual",
+                new Object[]{oddelId},
+                Integer.class
+        );
     }
 }

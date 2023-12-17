@@ -29,7 +29,7 @@ public class PacientAnalyzaController {
 
     @PutMapping("{id}")
     public ResponseEntity<PacientAnalyza> updateAnalyza(@RequestBody PacientAnalyza analyza){
-       // pacientService.update(analyza);
+       pacientService.updateAnalyza(analyza);
         return ResponseEntity.ok(analyza);
     }
 

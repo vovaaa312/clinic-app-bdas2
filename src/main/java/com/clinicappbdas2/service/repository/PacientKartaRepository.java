@@ -1,7 +1,7 @@
 package com.clinicappbdas2.service.repository;
 
-import com.clinicappbdas2.model.views.PacientKarta;
 import com.clinicappbdas2.model.mapper.PacientKartaMapper;
+import com.clinicappbdas2.model.views.PacientKarta;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,23 +16,33 @@ public class PacientKartaRepository {
 
 
     public List<PacientKarta> getAll(){
-        String sql = "SELECT * FROM PACIENTI_KARTY_VIEW";
+        String sql = "SELECT * FROM PACIENTI_KARTY_VIEW ORDER BY NAZEV_ODDELENI";
         return jdbcTemplate.query(sql, new PacientKartaMapper());
     }
 
     public void save(PacientKarta pacient){
-        String sql = "CALL VLOZ_KARTU_PACIENTA(?,?,?,?)";
+        String sql = "CALL VLOZ_KARTU_PACIENTA(?,?)";
         jdbcTemplate.update(sql,
-                pacient.getJmeno(),
-                pacient.getPrijmeni(),
-                pacient.getCisloTelefonu(),
-                pacient.getNazevOddeleni());
+                pacient.getIdPacient(),
+                pacient.getIdOddeleni());
     }
 
     public void update(PacientKarta pacientKarta){
-        String sql = "UPDATE KARTY_PACIENTU SET ID_PACIENT=?,ID_ODDELENI=? WHERE ID_KARTA =?";
-        jdbcTemplate.update(sql,
-                pacientKarta.getIdPacient(), pacientKarta.getIdOddeleni(), pacientKarta.getIdKarta());
+//        String sql = "CALL UPDATE_KARTA(?,?,?)";
+//        jdbcTemplate.update(sql,
+//                pacientKarta.getIdPacient(), pacientKarta.getIdOddeleni(), pacientKarta.getIdKarta());
+
+//        SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate).withProcedureName("UPDATE_KARTA");
+//        MapSqlParameterSource in = new MapSqlParameterSource()
+//                .addValue("PACIENT_ID_P", pacientKarta.getIdPacient())
+//                .addValue("ODDELENI_ID_P", pacientKarta.getIdOddeleni())
+//                .addValue("KARTA_ID_P", pacientKarta.getIdKarta());
+//        call.execute(in);
+
+        String sql = "UPDATE KARTY_PACIENTU SET ID_PACIENT =?, ID_ODDELENI = ? WHERE ID_KARTA=?";
+        jdbcTemplate.update(sql, pacientKarta.getIdPacient(), pacientKarta.getIdOddeleni(), pacientKarta.getIdKarta());
+
+
     }
 
     public void deleteByKartaId(Integer id){

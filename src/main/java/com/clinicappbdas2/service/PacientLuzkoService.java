@@ -47,11 +47,13 @@ public class PacientLuzkoService {
         luzkoRepository.delete(id);
     }
 
-    public int getAvailableBeds(int oddelId) {
-        return jdbcTemplate.queryForObject(
-                "SELECT get_volna_luzka_pocet(?) FROM dual",
-                new Object[]{oddelId},
-                Integer.class
-        );
+    public int getAvailableBeds(Long oddelId) {
+        return luzkoRepository.getAvailableBeds(oddelId);
+
+//        return jdbcTemplate.queryForObject(
+//                "SELECT get_volna_luzka_pocet(?) FROM dual",
+//                new Object[]{oddelId},
+//                Integer.class
+//        );
     }
 }

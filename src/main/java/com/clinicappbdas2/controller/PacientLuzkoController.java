@@ -68,7 +68,7 @@ public class PacientLuzkoController {
 
     }
     @GetMapping("/available-beds/{oddelId}")
-    public ResponseEntity<Integer> getAvailableBeds(@PathVariable int oddelId) {
+    public ResponseEntity<Integer> getAvailableBeds(@PathVariable Long oddelId) {
         int availableBeds = luzkoService.getAvailableBeds(oddelId);
         return ResponseEntity.ok(availableBeds);
     }

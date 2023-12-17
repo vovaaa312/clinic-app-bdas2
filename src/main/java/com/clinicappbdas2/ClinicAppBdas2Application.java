@@ -1,7 +1,7 @@
 package com.clinicappbdas2;
 
 
-import com.clinicappbdas2.service.repository.PacientLuzkoRepository;
+import com.clinicappbdas2.service.StatusNavstevyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,10 +15,9 @@ public class ClinicAppBdas2Application implements CommandLineRunner {
         SpringApplication.run(ClinicAppBdas2Application.class, args);
     }
 
-    final PacientLuzkoRepository repo;
+    final StatusNavstevyService repo;
     @Override
     public void run(String... args) throws Exception {
         System.out.println(repo.getAll());
-        System.out.println(repo.getLuzkaByPokojId(110030));
     }
 }

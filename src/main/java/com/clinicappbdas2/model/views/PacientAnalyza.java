@@ -7,13 +7,14 @@ import java.util.Date;
 @Data
 
 public class PacientAnalyza {
-    private Integer idPacient;
+    private Long idPacient;
     private String jmeno;
     private String prijmeni;
     private Long cisloTelefonu;
     private String pohlavi;
-    private Integer idKarta;
-    private Integer idAnalyza;
+    private Long idKarta;
+    private Long idOddeleni;
+    private Long idAnalyza;
     private Integer rbc;
     private Integer wbc;
     private Integer hgb;

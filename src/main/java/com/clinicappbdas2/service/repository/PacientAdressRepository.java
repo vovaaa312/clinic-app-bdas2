@@ -21,6 +21,12 @@ public class PacientAdressRepository {
         return jdbcTemplate.query(sql, new PacientAddressMapper());
     }
 
+//    public List<PacientAdresa> getPacientsByZamId(Long id){
+//        String sql = "SELECT * FROM PACIENTI_VIEW WHERE ";
+//        return jdbcTemplate.query(sql, new PacientAddressMapper());
+//
+//    }
+
     public void createPacient(PacientAdresa pacientAdresa){
         String sql = "CALL VLOZ_PACIENT_ADRESA(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, pacientAdresa.getJmeno(), pacientAdresa.getPrijmeni(),

@@ -35,6 +35,11 @@ public class NavstevyPacientuController {
     public ResponseEntity<List<NavstevaPacienta>>getAllByZamestnanecId(@PathVariable Long id){
         return ResponseEntity.ok(navstevyService.getAllByZamestnanecId(id));
     }
+
+    @GetMapping("oddeleni/{id}")
+    public ResponseEntity<List<NavstevaPacienta>>getAllByOddeleniId(@PathVariable Long id){
+        return ResponseEntity.ok(navstevyService.getAllByOddeleniId(id));
+    }
     @PostMapping
     public void createNavsteva(@RequestBody NavstevaPacienta navsteva) {
         navstevyService.createNavsteva(navsteva);

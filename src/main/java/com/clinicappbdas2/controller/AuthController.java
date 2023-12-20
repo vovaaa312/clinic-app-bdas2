@@ -43,6 +43,7 @@ public class AuthController {
             User user = (User) authenticate.getPrincipal();
 
             user.setPacientId(userService.getById(user.getId()).getPacientId());
+            user.setZamestnanecId(userService.getById(user.getId()).getZamestnanecId());
 
             var jwtToken = jwtTokenUtil.generateAccessToken(user);
             return LoginResponse.builder()

@@ -24,16 +24,20 @@ public class PacientAnalyzaService {
         repository.updateAnalyza(analyza);
     }
 
-    public List<PacientAnalyza> getByPacientId(Integer id) {
+    public List<PacientAnalyza> getByPacientId(Long id) {
         return repository.getByPacientId(id);
     }
 
-    public PacientAnalyza getByAnalysisId(Integer id) {
+    public List<PacientAnalyza>getByOddeleniId(Long id){
+        return repository.getByOddeleniId(id);
+    }
+
+    public PacientAnalyza getByAnalysisId(Long id) {
         return repository.getByAnalysisId(id);
 
     }
 
-    public void deleteAnalysis(Integer id){
+    public void deleteAnalysis(Long id){
        repository.deleteAnalysis(id);
     }
 }

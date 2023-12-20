@@ -33,6 +33,10 @@ public class NavstevyPacientuRepository {
         String sql = "SELECT * FROM NAVSTEVY_PACIENTU_VIEW WHERE ID_ZAMESTNANEC = ?";
         return jdbcTemplate.query(sql,new Object[]{id}, new NavstevaPacientaMapper());
     }
+    public List<NavstevaPacienta>getAllByOddeleniId(Long id){
+        String sql = "SELECT * FROM NAVSTEVY_PACIENTU_VIEW WHERE ID_ODDELENI = ?";
+        return jdbcTemplate.query(sql,new Object[]{id}, new NavstevaPacientaMapper());
+    }
 
     public void createNavsteva(NavstevaPacienta navsteva){
         String sql = "CALL VLOZ_NAVSTEVU(?,?,?,?,?,?)";

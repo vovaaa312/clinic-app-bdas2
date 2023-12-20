@@ -1,6 +1,5 @@
 package com.clinicappbdas2.service;
 
-import com.clinicappbdas2.model.Pacient;
 import com.clinicappbdas2.model.Zamestnanec;
 import com.clinicappbdas2.service.repository.ZamestnanecRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,7 @@ public class ZamestnanecService {
         return zamestnanecRepository.getAll();
     }
 
-    public Zamestnanec getById(int id) {
+    public Zamestnanec getById(Long id) {
         return zamestnanecRepository.getById(id);
     }
 
@@ -29,7 +28,7 @@ public class ZamestnanecService {
     public void update(Zamestnanec zamestnanec) {
         zamestnanecRepository.update(zamestnanec);
     }
-    public void delete(int id){
+    public void delete(Long id){
         zamestnanecRepository.deleteById(id);
     }
 

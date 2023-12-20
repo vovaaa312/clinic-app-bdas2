@@ -19,6 +19,8 @@ public class PacientAnalyzaRepository {
         return jdbcTemplate.query(sql, new PacientAnalyzaMapper());
     }
 
+
+
     public void save(PacientAnalyza analyza) {
 
         String sql = "CALL VLOZ_ANALYZU(?,?,?,?,?,?)";
@@ -33,13 +35,20 @@ public class PacientAnalyzaRepository {
     }
 
 
-    public List<PacientAnalyza> getByPacientId(Integer id) {
+    public List<PacientAnalyza> getByPacientId(Long id) {
         String sql = "SELECT * FROM PACIENTI_ANALYZY_VIEW WHERE ID_PACIENT = ?";
 
         return jdbcTemplate.query(sql, new Object[]{id}, new PacientAnalyzaMapper());
     }
 
-    public PacientAnalyza getByAnalysisId(Integer id) {
+    public List<PacientAnalyza>getByOddeleniId(Long id){
+        //select * from PACIENTI_ANALYZY_VIEW where ID_ODDELENI
+        String sql = "SELECT * FROM PACIENTI_ANALYZY_VIEW WHERE ID_ODDELENI = ?";
+
+        return jdbcTemplate.query(sql, new Object[]{id}, new PacientAnalyzaMapper());
+    }
+
+    public PacientAnalyza getByAnalysisId(Long id) {
         String sql = "SELECT * FROM PACIENTI_ANALYZY_VIEW WHERE ID_ANALYZA = ?";
         return jdbcTemplate.queryForObject(
                 sql,
@@ -48,7 +57,7 @@ public class PacientAnalyzaRepository {
         );
     }
 
-    public void deleteAnalysis(Integer id) {
+    public void deleteAnalysis(Long id) {
         String sql = "DELETE FROM ANALYZY WHERE ID_ANALYZA = ?";
         jdbcTemplate.update(sql, id);
     }

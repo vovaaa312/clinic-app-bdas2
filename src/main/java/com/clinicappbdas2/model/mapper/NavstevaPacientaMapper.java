@@ -19,9 +19,12 @@ public class NavstevaPacientaMapper implements RowMapper<NavstevaPacienta> {
         navsteva.setIdStatus(rs.getLong("ID_STATUS"));
         navsteva.setPacientJmeno(rs.getString("PACIENT_JMENO"));
         navsteva.setPacientPrijmeni(rs.getString("PACIENT_PRIJMENI"));
-        navsteva.setCisloTelefonu(rs.getLong("CISLO_TELEFONU"));
+        navsteva.setPacientCisloTelefonu(rs.getLong("P_CISLO_TELEFONU"));
         navsteva.setZamestnanecJmeno(rs.getString("ZAMESTNANEC_JMENO"));
         navsteva.setZamestnanecPrijmeni(rs.getString("ZAMESTNANEC_PRIJMENI"));
+        navsteva.setZamestnanecCisloTelefonu(rs.getLong("Z_CISLO_TELEFONU"));
+        navsteva.setIdOddeleni(rs.getLong("ID_ODDELENI"));
+
         navsteva.setStatus(rs.getString("STATUS"));
         return navsteva;
     }

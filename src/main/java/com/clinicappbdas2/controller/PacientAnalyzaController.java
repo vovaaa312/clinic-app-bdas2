@@ -28,22 +28,33 @@ public class PacientAnalyzaController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<PacientAnalyza> updateAnalyza(@RequestBody PacientAnalyza analyza){
-       pacientService.updateAnalyza(analyza);
+    public ResponseEntity<PacientAnalyza> updateAnalyza(@RequestBody PacientAnalyza analyza) {
+        pacientService.updateAnalyza(analyza);
         return ResponseEntity.ok(analyza);
     }
 
+
+    @GetMapping("pacient/{id}")
+    public ResponseEntity<List<PacientAnalyza>> getAllByPacId(@PathVariable Long id)
+    {
+        return ResponseEntity.ok(pacientService.getByPacientId(id));
+    }
+
+    @GetMapping("oddeleni/{id}")
+    public ResponseEntity<List<PacientAnalyza>> getAllByOddId(@PathVariable Long id)
+    {
+        return ResponseEntity.ok(pacientService.getByOddeleniId(id));
+    }
+
     @GetMapping("{id}")
-    public ResponseEntity<PacientAnalyza> getByAnalysisId(@PathVariable Integer id) {
+    public ResponseEntity<PacientAnalyza> getByAnalysisId(@PathVariable Long id) {
         PacientAnalyza pacient = pacientService.getByAnalysisId(id);
         return ResponseEntity.ok(pacient);
     }
 
 
-
-
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deleteAnalysis(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> deleteAnalysis(@PathVariable Long id) {
         pacientService.deleteAnalysis(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

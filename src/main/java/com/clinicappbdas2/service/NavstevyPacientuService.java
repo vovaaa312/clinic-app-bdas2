@@ -35,4 +35,8 @@ public class NavstevyPacientuService {
     public List<NavstevaPacienta> getAllByZamestnanecId(Long id) {
         return navstevyRepository.getAllByZamestnanecId(id);
     }
-}
+
+    public List<NavstevaPacienta>getAllByOddeleniId(Long id) {
+        return navstevyRepository.getAllByOddeleniId(id);
+    }
+    }

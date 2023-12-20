@@ -1,6 +1,5 @@
 package com.clinicappbdas2.service.repository;
 
-import com.clinicappbdas2.model.Pacient;
 import com.clinicappbdas2.model.Zamestnanec;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -33,14 +32,14 @@ public class ZamestnanecRepository {
         return jdbcTemplate.query("SELECT * from ZAMESTNANCI",
                 BeanPropertyRowMapper.newInstance(Zamestnanec.class));
     }
-    public Zamestnanec getById(Integer id) {
+    public Zamestnanec getById(Long id) {
         String sql = "SELECT * FROM ZAMESTNANCI WHERE ID_ZAMESTNANEC = ?";
 
         // Используем BeanPropertyRowMapper для маппинга результата на объект Pacient
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Zamestnanec.class));
     }
 
-    public void deleteById(Integer id) {
+    public void deleteById(Long id) {
         String sql = "DELETE FROM ZAMESTNANCI WHERE ID_ZAMESTNANEC=?";
         jdbcTemplate.update(sql, id);
     }

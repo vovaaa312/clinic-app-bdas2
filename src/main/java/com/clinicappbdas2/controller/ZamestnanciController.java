@@ -1,10 +1,8 @@
 package com.clinicappbdas2.controller;
 
-import com.clinicappbdas2.model.Pacient;
 import com.clinicappbdas2.model.Zamestnanec;
 import com.clinicappbdas2.service.ZamestnanecService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +30,7 @@ public class ZamestnanciController {
 
 
     @GetMapping("{id}")
-    public ResponseEntity<Zamestnanec> getById(@PathVariable Integer id){
+    public ResponseEntity<Zamestnanec> getById(@PathVariable Long id){
         Zamestnanec zamestnanec=   zamestnanecService.getById(id);
         return ResponseEntity.ok(zamestnanec);
     }
@@ -43,7 +41,7 @@ public class ZamestnanciController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deletet(@PathVariable int id){
+    public ResponseEntity<HttpStatus> deletet(@PathVariable Long id){
         //pacientService.getById(id);
         zamestnanecService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

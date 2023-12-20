@@ -47,7 +47,7 @@ public class PacientLuzkoRepository {
     }
 
 
-    public void rezervaceLuzka(Integer luzkoId, Integer pacientId, Date datumRezervace, Date datumPropusteni) {
+    public void rezervaceLuzka(Long luzkoId, Long pacientId, Date datumRezervace, Date datumPropusteni) {
         String sql = "CALL REZERVACE_LUZKA(?,?,?,?)";
         jdbcTemplate.update(sql, luzkoId, pacientId, datumRezervace, datumPropusteni);
 

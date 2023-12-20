@@ -4,6 +4,6 @@ import lombok.Value;
 
 @Value
 public class NewPasswordRequest {
-    Integer id;
+    Long id;
     String password;
 }

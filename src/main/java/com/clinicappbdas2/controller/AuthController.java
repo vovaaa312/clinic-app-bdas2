@@ -3,11 +3,10 @@ package com.clinicappbdas2.controller;
 import com.clinicappbdas2.configuration.JwtTokenUtil;
 import com.clinicappbdas2.model.request.LoginRequest;
 import com.clinicappbdas2.model.request.RegisterRequest;
+import com.clinicappbdas2.model.response.LoginResponse;
 import com.clinicappbdas2.model.security.User;
 import com.clinicappbdas2.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,10 +30,8 @@ public class AuthController {
     }
 
 
-
-
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody LoginRequest request) {
+    public LoginResponse login(@RequestBody LoginRequest request) {
         try {
             Authentication authenticate = authenticationManager
                     .authenticate(
@@ -45,11 +42,19 @@ public class AuthController {
 
             User user = (User) authenticate.getPrincipal();
 
-            return ResponseEntity.ok()
-                    .header(HttpHeaders.AUTHORIZATION, jwtTokenUtil.generateAccessToken(user))
-                    .body(user);
+            user.setPacientId(userService.getById(user.getId()).getPacientId());
+
+            var jwtToken = jwtTokenUtil.generateAccessToken(user);
+            return LoginResponse.builder()
+                    .userId(user.getId())
+                    .login(user.getLogin())
+                    .roleName(user.getRoleName())
+                    .jwt(jwtToken)
+                    .pacId(user.getPacientId())
+                    .zamId(user.getZamestnanecId())
+                    .build();
         } catch (BadCredentialsException ex) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return null;
         }
     }
 
@@ -63,9 +68,6 @@ public class AuthController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-
-
 
 
 }

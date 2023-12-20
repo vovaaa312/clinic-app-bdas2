@@ -3,7 +3,6 @@ package com.clinicappbdas2.service.repository;
 import com.clinicappbdas2.model.request.NewPasswordRequest;
 import com.clinicappbdas2.model.request.RegisterRequest;
 import com.clinicappbdas2.model.security.User;
-import com.clinicappbdas2.model.security.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -122,8 +121,8 @@ public class UserRepository {
         return jdbcTemplate.query(sql, User.getUserDataMapper());
     }
 
-    public User getUserById(Integer id){
-        String sql = "SELECT USER_ID, LOGIN, PASSWORD, ID_ROLE, NAZEV_ROLE FROM USERS_VIEW WHERE USER_ID = ?";
+    public User getUserById(Long id){
+        String sql = "SELECT USER_ID, LOGIN, PASSWORD, ID_ROLE,ID_PACIENT,ID_ZAMESTNANEC, NAZEV_ROLE FROM USERS_VIEW WHERE USER_ID = ?";
         return jdbcTemplate.queryForObject(
                 sql,
                 new Object[]{id},

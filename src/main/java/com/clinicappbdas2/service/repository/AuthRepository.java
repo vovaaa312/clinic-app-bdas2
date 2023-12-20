@@ -15,7 +15,7 @@ public class AuthRepository {
 
     public User getUserByLogin(String login) {
         String query = "SELECT * FROM USERS WHERE LOGIN like ?";
-        List<User> foundUsers = jdbcTemplate.query(query, new Object[]{login}, User.getUserMapper());
+        List<User> foundUsers = jdbcTemplate.query(query, new Object[]{login}, User.getUserDataMapper());
         if (foundUsers.size() != 1) {
             return null;
         }

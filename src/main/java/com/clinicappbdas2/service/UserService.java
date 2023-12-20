@@ -95,7 +95,7 @@ public class UserService {
         userRepository.updateUser(user);
     }
 
-    public User getById(int id){
+    public User getById(Long id){
         return userRepository.getUserById(id);
     }
 

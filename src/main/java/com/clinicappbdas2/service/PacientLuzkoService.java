@@ -1,6 +1,6 @@
 package com.clinicappbdas2.service;
 
-import com.clinicappbdas2.model.request.PridejLuzkoPacientoviRequest;
+import com.clinicappbdas2.model.request.RezervaceLuzkaRequest;
 import com.clinicappbdas2.model.views.PacientLuzko;
 import com.clinicappbdas2.service.repository.PacientLuzkoRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +35,8 @@ public class PacientLuzkoService {
         luzkoRepository.releaseLuzko(id);
     }
 
-    public void pridejLuzkoPacientovi(PridejLuzkoPacientoviRequest request) {
-        luzkoRepository.pridejLuzkoPacientovi(request.getLuzkoId(),request.getPacientId(), request.getDatumRezervace());
+    public void rezervaceLuzka(RezervaceLuzkaRequest request) {
+        luzkoRepository.rezervaceLuzka(request.getLuzkoId(),request.getPacientId(), request.getDatumRezervace(),request.getDatumPropusteni());
     }
 
     public void update(PacientLuzko luzko) {

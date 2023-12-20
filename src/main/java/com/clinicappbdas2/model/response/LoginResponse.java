@@ -1,15 +1,18 @@
 package com.clinicappbdas2.model.response;
 
-import com.clinicappbdas2.model.security.UserRole;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
+@Builder
+@RequiredArgsConstructor
+@Data
 public class LoginResponse {
 
-    private Integer id;
-    private String login;
-    private UserRole role;
-    private Integer clientId;
-    private String registeredByLogin;
-    private String jwt;
-    private String active;
-    private String image;
+  private final Long userId;
+  private final String login;
+  private final String roleName;
+  private final  String jwt;
+  private final Long pacId;
+  private final Long zamId;
 }

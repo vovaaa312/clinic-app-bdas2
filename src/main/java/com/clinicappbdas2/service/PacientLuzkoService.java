@@ -1,6 +1,6 @@
 package com.clinicappbdas2.service;
 
-import com.clinicappbdas2.model.request.RezervaceLuzkaRequest;
+import com.clinicappbdas2.model.request.PridejLuzkoPacientoviRequest;
 import com.clinicappbdas2.model.views.PacientLuzko;
 import com.clinicappbdas2.service.repository.PacientLuzkoRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +35,8 @@ public class PacientLuzkoService {
         luzkoRepository.releaseLuzko(id);
     }
 
-    public void rezervaceLuzka(RezervaceLuzkaRequest request) {
-        luzkoRepository.rezervaceLuzka(request.getLuzkoId(),request.getPacientId(), request.getDatumRezervace(), request.getDatumPropusteni());
+    public void pridejLuzkoPacientovi(PridejLuzkoPacientoviRequest request) {
+        luzkoRepository.pridejLuzkoPacientovi(request.getLuzkoId(),request.getPacientId(), request.getDatumRezervace());
     }
 
     public void update(PacientLuzko luzko) {
@@ -47,11 +47,13 @@ public class PacientLuzkoService {
         luzkoRepository.delete(id);
     }
 
-    public int getAvailableBeds(int oddelId) {
-        return jdbcTemplate.queryForObject(
-                "SELECT get_volna_luzka_pocet(?) FROM dual",
-                new Object[]{oddelId},
-                Integer.class
-        );
+    public int getAvailableBeds(Long oddelId) {
+        return luzkoRepository.getAvailableBeds(oddelId);
+
+//        return jdbcTemplate.queryForObject(
+//                "SELECT get_volna_luzka_pocet(?) FROM dual",
+//                new Object[]{oddelId},
+//                Integer.class
+//        );
     }
 }

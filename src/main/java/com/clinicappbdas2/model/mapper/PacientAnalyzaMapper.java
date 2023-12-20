@@ -19,10 +19,10 @@ public class PacientAnalyzaMapper implements RowMapper<PacientAnalyza> {
         pacient.setIdKarta(rs.getInt("ID_KARTA"));
         pacient.setIdAnalyza(rs.getInt("ID_ANALYZA"));
 
-        pacient.setRbc(rs.getString("RBC"));
-        pacient.setWbc(rs.getString("WBC"));
-        pacient.setHgb(rs.getString("HGB"));
-        pacient.setPlt(rs.getString("PLT"));
+        pacient.setRbc(rs.getInt("RBC"));
+        pacient.setWbc(rs.getInt("WBC"));
+        pacient.setHgb(rs.getInt("HGB"));
+        pacient.setPlt(rs.getInt("PLT"));
         pacient.setDatum(rs.getDate("DATUM"));
 
         return pacient;

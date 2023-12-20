@@ -19,30 +19,27 @@ public class PacientAnalyzaRepository {
         return jdbcTemplate.query(sql, new PacientAnalyzaMapper());
     }
 
-    public void save(PacientAnalyza pacient){
+    public void save(PacientAnalyza analyza) {
 
-        String sql = "CALL VLOZ_ANALYZU(?,?,?,?,?,?,?,?)";
+        String sql = "CALL VLOZ_ANALYZU(?,?,?,?,?,?)";
         jdbcTemplate.update(
                 sql,
-                pacient.getJmeno(),
-                pacient.getPrijmeni(),
-                pacient.getPohlavi(),
-                pacient.getDatum(),
-                pacient.getRbc(),
-                pacient.getWbc(),
-                pacient.getHgb(),
-                pacient.getPlt());
+                analyza.getIdKarta(),
+                analyza.getDatum(),
+                analyza.getRbc(),
+                analyza.getWbc(),
+                analyza.getHgb(),
+                analyza.getPlt());
     }
 
 
-
-    public List<PacientAnalyza> getByPacientId(Integer id){
+    public List<PacientAnalyza> getByPacientId(Integer id) {
         String sql = "SELECT * FROM PACIENTI_ANALYZY_VIEW WHERE ID_PACIENT = ?";
 
         return jdbcTemplate.query(sql, new Object[]{id}, new PacientAnalyzaMapper());
     }
 
-    public PacientAnalyza getByAnalysisId(Integer id){
+    public PacientAnalyza getByAnalysisId(Integer id) {
         String sql = "SELECT * FROM PACIENTI_ANALYZY_VIEW WHERE ID_ANALYZA = ?";
         return jdbcTemplate.queryForObject(
                 sql,
@@ -51,10 +48,22 @@ public class PacientAnalyzaRepository {
         );
     }
 
-    public void deleteAnalysis(Integer id){
+    public void deleteAnalysis(Integer id) {
         String sql = "DELETE FROM ANALYZY WHERE ID_ANALYZA = ?";
         jdbcTemplate.update(sql, id);
     }
 
+
+    public void updateAnalyza(PacientAnalyza analyza) {
+        String sql = "CALL UPDATE_ANALYZA(?,?,?,?,?,?)";
+        jdbcTemplate.update(
+                sql,
+                analyza.getIdAnalyza(),
+                analyza.getRbc(),
+                analyza.getWbc(),
+                analyza.getHgb(),
+                analyza.getPlt(),
+                analyza.getDatum());
+    }
 
 }

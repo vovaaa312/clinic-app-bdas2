@@ -1,10 +1,13 @@
 package com.clinicappbdas2.service;
 
+import com.clinicappbdas2.model.LogData;
 import com.clinicappbdas2.model.TableColumn;
+import com.clinicappbdas2.model.mapper.LogDataMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -32,6 +35,11 @@ public class DatabaseService {
                 );
             }
         });
+    }
+
+    public List<LogData>getLogs(){
+        String sql = "SELECT * FROM LOG_TABLE";
+        return jdbcTemplate.query(sql, new LogDataMapper());
     }
 }
 

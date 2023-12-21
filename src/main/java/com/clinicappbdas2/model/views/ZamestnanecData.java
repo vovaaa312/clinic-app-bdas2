@@ -12,6 +12,7 @@ public class ZamestnanecData {
     private Date datumNarozeni;
     private Long cisloTelefonu;
     private Long pracovniZkusenosti;
+    private String pohlavi;
     private Long idAdresa;
     private String zeme;
     private String mesto;

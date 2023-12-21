@@ -21,6 +21,11 @@ public class ZamestnanecDataRepository {
         return jdbcTemplate.query(sql, new ZamestnanecDataMapper());
     }
 
+    public List<ZamestnanecData> getAllByOddeleniId(Long id) {
+        String sql = "SELECT * FROM ZAMESTNANCI_VIEW WHERE ID_ODDELENI=?";
+        return jdbcTemplate.query(sql,new Object[]{id}, new ZamestnanecDataMapper());
+    }
+
     public void createZamestnanec(ZamestnanecData zamestnanecData) {
         String sql = "CALL VLOZ_ZAMESTNANCE(?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql,
@@ -72,4 +77,6 @@ public class ZamestnanecDataRepository {
         String sql = "DELETE FROM ZAMESTNANCI WHERE ID_ZAMESTNANEC = ?";
         jdbcTemplate.update(sql, id);
     }
+
+
 }

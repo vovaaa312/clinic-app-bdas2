@@ -16,6 +16,7 @@ public class ZamestnanecDataMapper implements RowMapper<ZamestnanecData>{
         zamestnanec.setDatumNarozeni(rs.getDate("DATUM_NAROZENI"));
         zamestnanec.setCisloTelefonu(rs.getLong("CISLO_TELEFONU"));
         zamestnanec.setPracovniZkusenosti(rs.getLong("PRACOVNI_ZKUSENOSTI"));
+        zamestnanec.setPohlavi(rs.getString("POHLAVI"));
         zamestnanec.setIdAdresa(rs.getLong("ID_ADRESA"));
         zamestnanec.setZeme(rs.getString("ZEME"));
         zamestnanec.setMesto(rs.getString("MESTO"));

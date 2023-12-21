@@ -38,5 +38,9 @@ public class ZamestnanecDataService {
         zamestnanecData.setIdOddeleni(oddeleniRepository.getIdByNazev(zamestnanecData.getNazevOddeleni()));
         zamestnanecDataRepository.updateZamestnanec(zamestnanecData);
     }
+
+    public List<ZamestnanecData> getAllByOddeleniId(Long id) {
+        return zamestnanecDataRepository.getAllByOddeleniId(id);
+    }
 }
 

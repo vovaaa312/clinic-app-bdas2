@@ -34,6 +34,11 @@ public class ZamestnanciDataController {
         ZamestnanecData data = zamestnanciService.getById(id);
         return ResponseEntity.ok(data);
     }
+    @GetMapping("oddeleni/{id}")
+    public ResponseEntity<List<ZamestnanecData>> getAllByOddeleni(@PathVariable Long id) {
+        return ResponseEntity.ok(zamestnanciService.getAllByOddeleniId(id));
+    }
+
 
     @PutMapping("{id}")
     public ResponseEntity<ZamestnanecData> updateZamestnanecData(@PathVariable int id, @RequestBody ZamestnanecData data) {

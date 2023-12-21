@@ -117,7 +117,7 @@ public class UserRepository {
     }
 
     public List<User> getAllUsers() {
-        String sql = "SELECT USER_ID, LOGIN, PASSWORD, ID_ROLE, NAZEV_ROLE FROM USERS_VIEW";
+        String sql = "SELECT USER_ID, LOGIN, PASSWORD, ID_ROLE,ID_PACIENT,ID_ZAMESTNANEC, NAZEV_ROLE FROM USERS_VIEW";
         return jdbcTemplate.query(sql, User.getUserDataMapper());
     }
 

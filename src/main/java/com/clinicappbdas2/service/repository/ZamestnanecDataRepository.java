@@ -27,14 +27,15 @@ public class ZamestnanecDataRepository {
     }
 
     public void createZamestnanec(ZamestnanecData zamestnanecData) {
-        String sql = "CALL VLOZ_ZAMESTNANCE(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "CALL VLOZ_ZAMESTNANCE(?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql,
                 zamestnanecData.getJmeno(),
                 zamestnanecData.getPrijmeni(),
+                zamestnanecData.getPohlavi(),
                 zamestnanecData.getDatumNarozeni(),
                 zamestnanecData.getCisloTelefonu(),
                 zamestnanecData.getPracovniZkusenosti(),
-                zamestnanecData.getNazevOddeleni(),
+                zamestnanecData.getIdOddeleni(),
                 zamestnanecData.getZeme(),
                 zamestnanecData.getMesto(),
                 zamestnanecData.getAdresa(),

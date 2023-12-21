@@ -1,6 +1,8 @@
 package com.clinicappbdas2.controller;
 
 import com.clinicappbdas2.model.request.ChangeRoleRequest;
+import com.clinicappbdas2.model.request.ChangeUserPacIdRequest;
+import com.clinicappbdas2.model.request.ChangeUserZamIdRequest;
 import com.clinicappbdas2.model.security.User;
 import com.clinicappbdas2.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +63,18 @@ public class UsersController {
     @PostMapping("/changerole")
     public void changeUserRole(@RequestBody ChangeRoleRequest request) {
         userService.changeUserRole(request.getUserId(),request.getRoleName());
+//        return ResponseEntity.ok(request);
+    }
+
+    @PostMapping("/changepacient")
+    public void changeUserPacId(@RequestBody ChangeUserPacIdRequest request) {
+        userService.changeUserPacId(request.getUserId(),request.getNewPacId());
+//        return ResponseEntity.ok(request);
+    }
+
+    @PostMapping("/changezamestnanec")
+    public void changeUserZamId(@RequestBody ChangeUserZamIdRequest request) {
+        userService.changeUserZamId(request.getUserId(),request.getNewZamId());
 //        return ResponseEntity.ok(request);
     }
 

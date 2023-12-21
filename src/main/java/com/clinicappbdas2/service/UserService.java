@@ -2,7 +2,6 @@ package com.clinicappbdas2.service;
 
 import com.clinicappbdas2.model.exception.AccessProhibitedException;
 import com.clinicappbdas2.model.exception.ServiceException;
-import com.clinicappbdas2.model.request.ChangeRoleRequest;
 import com.clinicappbdas2.model.request.NewPasswordRequest;
 import com.clinicappbdas2.model.request.RegisterRequest;
 import com.clinicappbdas2.model.security.User;
@@ -51,9 +50,7 @@ public class UserService {
         userRepository.changePassword(request);
     }
 
-    public void setPacientUser(int pacientId, int userId){
-        userRepository.setPacientUser(pacientId,userId);
-    }
+
     public void resetPassword(User user){
         if (user.getRole() != UserRole.USER){
             throw new ServiceException("It's forbidden to reset passwords for admins");
@@ -79,9 +76,6 @@ public class UserService {
     }
 
 
-    public void changeUserRole(Integer id, String roleName) {
-        userRepository.changeUserRole(id,roleName);
-    }
 
     public List<User> getAll(){
         return userRepository.getAllUsers();
@@ -101,5 +95,15 @@ public class UserService {
 
     public void delete(int id){userRepository.deleteById(id);}
 
+    public void changeUserRole(Integer id, String roleName) {
+        userRepository.changeUserRole(id,roleName);
+    }
 
+    public void changeUserPacId(Integer userId, Integer newPacId) {
+        userRepository.changeUserPacId(userId,newPacId);
+    }
+
+    public void changeUserZamId(Integer userId, Integer newZamId) {
+        userRepository.changeUserZamId(userId, newZamId);
+    }
 }

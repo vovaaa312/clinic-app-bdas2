@@ -65,18 +65,7 @@ public class UserRepository {
         }
     }
 
-//<<<<<<< HEAD
-//
-//=======
-//    // TODO:
-//
-//    /**
-//     * 1. triggers + sequences for each table to insert id (replace if passed by sequence value)
-//     * 2. view `USER join USER_ROLE by roleId`
-//     * 3. change `USERS` by view name
-//     * 4. change User.getusermapper()
-//     */
-//>>>>>>> origin/master
+
     public User getUserByLogin(String login) {
         String query = "SELECT * FROM USERS_VIEW WHERE LOGIN like ?";
         List<User> foundUsers = jdbcTemplate.query(query, new Object[]{login}, User.getUserMapper());
@@ -146,10 +135,15 @@ public class UserRepository {
         jdbcTemplate.update(procedureCall, userId, roleName);
     }
 
-    public void setPacientUser(int pacientId, int userId){
-        String procedureCall = "{call NASTAV_PACIENT_USER(?, ?)}";
-        jdbcTemplate.update(procedureCall, pacientId, userId);
+    public void changeUserPacId(Integer userId, Integer newPacId) {
+        String procedureCall = "{call ChangeUserPacId(?, ?)}";
+        jdbcTemplate.update(procedureCall, userId, newPacId);
     }
+    public void changeUserZamId(Integer userId, Integer newZamId) {
+        String procedureCall = "{call ChangeUserZamId(?, ?)}";
+        jdbcTemplate.update(procedureCall, userId, newZamId);
+    }
+
 
     private Integer roleValueOf(String roleName){
         switch (roleName){
@@ -161,5 +155,8 @@ public class UserRepository {
         }
 
     }
+
+
+
 }
 

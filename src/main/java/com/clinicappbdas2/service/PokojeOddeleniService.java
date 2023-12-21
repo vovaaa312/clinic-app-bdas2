@@ -11,25 +11,30 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PokojeOddeleniService {
 
-    private final PokojeOddeleniRepository pokojeOddeleniRepository;
+    private final PokojeOddeleniRepository pokojeRepository;
 
     public List<PokojeOddeleni> getAll() {
-        return pokojeOddeleniRepository.getAll();
+        return pokojeRepository.getAll();
     }
+
+    public List<PokojeOddeleni> getByOddeleniId(Long id) {
+        return pokojeRepository.getByOddeleniId(id);
+    }
+
 
     public void createPokoj(PokojeOddeleni pokoj) {
-        pokojeOddeleniRepository.addPokoj(pokoj);
+        pokojeRepository.addPokoj(pokoj);
     }
 
-    public void deletePokoj(Integer id) {
-        pokojeOddeleniRepository.deletePokoj(id);
+    public void deletePokoj(Long id) {
+        pokojeRepository.deletePokoj(id);
     }
 
     public void updatePokoj(PokojeOddeleni pokoj) {
-        pokojeOddeleniRepository.updatePokoj(pokoj);
+        pokojeRepository.updatePokoj(pokoj);
     }
 
-    public PokojeOddeleni getByPokojId(Integer id) {
-        return pokojeOddeleniRepository.getByPokojId(id);
+    public PokojeOddeleni getByPokojId(Long id) {
+        return pokojeRepository.getByPokojId(id);
     }
 }

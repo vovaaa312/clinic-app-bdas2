@@ -41,4 +41,7 @@ public class PacientKartaService {
         return repository.getByKartaId(id);
     }
 
+    public List<PacientKarta> getAllByOddeleniId(Long id) {
+        return repository.getAllByOddeleniId(id);
+    }
 }

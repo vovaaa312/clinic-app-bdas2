@@ -39,4 +39,8 @@ public class NavstevyPacientuService {
     public List<NavstevaPacienta>getAllByOddeleniId(Long id) {
         return navstevyRepository.getAllByOddeleniId(id);
     }
+
+    public void deleteById(Long id) {
+        navstevyRepository.deleteById(id);
     }
+}

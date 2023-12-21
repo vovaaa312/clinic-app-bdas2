@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PokojeOddeleni {
-    private Integer idPokoj;
+    private Long idPokoj;
     private Integer patro;
     private Integer cislo;
-    private Integer idOddeleni;
+    private Long idOddeleni;
     private String  nazevOddeleni;
     private Integer pocetLuzek;
 

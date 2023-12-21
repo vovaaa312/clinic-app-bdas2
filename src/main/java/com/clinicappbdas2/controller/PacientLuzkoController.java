@@ -31,18 +31,25 @@ public class PacientLuzkoController {
     }
 
     @GetMapping("luzko/{id}")
-    public ResponseEntity<PacientLuzko> getByLuzkoId(@PathVariable Integer id) {
+    public ResponseEntity<PacientLuzko> getByLuzkoId(@PathVariable Long id) {
         PacientLuzko luzko = luzkoService.getByLuzkoId(id);
         return ResponseEntity.ok(luzko);
     }
+    @GetMapping("pacient/{id}")
+    public ResponseEntity<PacientLuzko> getByPacientId(@PathVariable Long id) {
+        PacientLuzko luzko = luzkoService.getByPacentId(id);
+        return ResponseEntity.ok(luzko);
+    }
+
 
     @GetMapping("pokoj/{id}")
-    public ResponseEntity<List<PacientLuzko>> getByPokojId(@PathVariable Integer id) {
+    public ResponseEntity<List<PacientLuzko>> getByPokojId(@PathVariable Long id) {
         return ResponseEntity.ok(luzkoService.getLuzkaByPokojId(id));
     }
 
+
     @RequestMapping(value = "release/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> releaseLuzkoById(@PathVariable Integer id) {
+    public ResponseEntity<Void> releaseLuzkoById(@PathVariable Long id) {
         luzkoService.releaseLuzko(id);
         return ResponseEntity.ok().build();
     }
@@ -55,6 +62,8 @@ public class PacientLuzkoController {
     }
 
 
+
+
     @PutMapping("{id}")
     public ResponseEntity<PacientLuzko> updateLuzko(@PathVariable int id, @RequestBody PacientLuzko luzko) {
         luzkoService.update(luzko);
@@ -62,7 +71,7 @@ public class PacientLuzkoController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deleteLuzko(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> deleteLuzko(@PathVariable Long id) {
         luzkoService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

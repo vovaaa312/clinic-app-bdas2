@@ -19,11 +19,11 @@ public class PacientLuzkoService {
         return luzkoRepository.getAll();
     }
 
-    public List<PacientLuzko> getLuzkaByPokojId(Integer id) {
+    public List<PacientLuzko> getLuzkaByPokojId(Long id) {
         return luzkoRepository.getLuzkaByPokojId(id);
     }
 
-    public PacientLuzko getByLuzkoId(Integer id) {
+    public PacientLuzko getByLuzkoId(Long id) {
         return luzkoRepository.getByLuzkoId(id);
     }
 
@@ -31,19 +31,23 @@ public class PacientLuzkoService {
         luzkoRepository.save(luzko);
     }
 
-    public void releaseLuzko(Integer id) {
+    public void releaseLuzko(Long id) {
         luzkoRepository.releaseLuzko(id);
     }
 
     public void rezervaceLuzka(RezervaceLuzkaRequest request) {
-        luzkoRepository.rezervaceLuzka(request.getLuzkoId(),request.getPacientId(), request.getDatumRezervace(),request.getDatumPropusteni());
+        luzkoRepository.rezervaceLuzka(request.getLuzkoId(), request.getPacientId(), request.getDatumRezervace(), request.getDatumPropusteni());
+    }
+
+    public PacientLuzko getByPacentId(Long id) {
+        return luzkoRepository.getLuzkoByPacId(id);
     }
 
     public void update(PacientLuzko luzko) {
         luzkoRepository.update(luzko);
     }
 
-    public void delete(Integer id){
+    public void delete(Long id) {
         luzkoRepository.delete(id);
     }
 

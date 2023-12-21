@@ -66,4 +66,8 @@ public class PacientKartaRepository {
     }
 
 
+    public List<PacientKarta> getAllByOddeleniId(Long id) {
+        String sql = "SELECT * FROM PACIENTI_KARTY_VIEW WHERE ID_ODDELENI = ?";
+        return jdbcTemplate.query(sql,new Object[]{id},new PacientKartaMapper());
+    }
 }

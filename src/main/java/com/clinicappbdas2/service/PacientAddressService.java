@@ -34,4 +34,8 @@ public class PacientAddressService {
     public void update(PacientAdresa pacientAdresa) {
         pacientAdressRepository.updatePacient(pacientAdresa);
     }
+
+//    public List<PacientKarta> getAllByOddeleniId(Long id) {
+//        return pacientAdressRepository.getAllByOddeleniId(id);
+//    }
 }

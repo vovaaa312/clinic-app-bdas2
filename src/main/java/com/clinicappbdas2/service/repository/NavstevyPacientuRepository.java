@@ -66,4 +66,8 @@ public class NavstevyPacientuRepository {
     }
 
 
+    public void deleteById(Long id) {
+        String sql = "CALL ODEBER_NAVSTEVU(?)";
+        jdbcTemplate.update(sql,id);
+    }
 }

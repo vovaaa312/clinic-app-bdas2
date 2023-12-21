@@ -39,6 +39,11 @@ public class PacientKartaController {
         return ResponseEntity.ok(pacientKartaService.getByPacientId(id));
     }
 
+    @GetMapping("oddeleni/{id}")
+    public ResponseEntity<List<PacientKarta>> getAllByOddeleni(@PathVariable Long id) {
+        return ResponseEntity.ok(pacientKartaService.getAllByOddeleniId(id));
+    }
+
 
     @PutMapping("{id}")
     public ResponseEntity<PacientKarta> updatePacientKarta(@PathVariable int id, @RequestBody PacientKarta pacient) {

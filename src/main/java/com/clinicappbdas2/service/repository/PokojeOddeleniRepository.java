@@ -19,6 +19,12 @@ public class PokojeOddeleniRepository {
         return jdbcTemplate.query(sql, new PokojeOddeleniMapper());
     }
 
+    public List<PokojeOddeleni> getByOddeleniId(Long id) {
+        String sql = "SELECT * FROM POKOJE_ODDELENI_VIEW WHERE ID_ODDELENI = ?";
+        return jdbcTemplate.query(sql, new Object[]{id}, new PokojeOddeleniMapper());
+
+    }
+
     public void addPokoj(PokojeOddeleni pokoj) {
         String sql = "CALL VLOZ_POKOJ(?,?,?)";
         jdbcTemplate.update(
@@ -30,7 +36,7 @@ public class PokojeOddeleniRepository {
         );
     }
 
-    public void deletePokoj(Integer id) {
+    public void deletePokoj(Long id) {
         String sql = "CALL ODEBER_POKOJ(?)";
         jdbcTemplate.update(sql, id);
     }
@@ -45,7 +51,7 @@ public class PokojeOddeleniRepository {
                 pokoj.getCislo());
     }
 
-    public PokojeOddeleni getByPokojId(Integer id){
+    public PokojeOddeleni getByPokojId(Long id){
         String sql = "SELECT * FROM POKOJE_ODDELENI_VIEW WHERE ID_POKOJ = ?";
         return jdbcTemplate.queryForObject(
                 sql,

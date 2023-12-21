@@ -22,6 +22,10 @@ public class PokojeOddeleniController {
         return ResponseEntity.ok(pokojeService.getAll());
     }
 
+    @GetMapping("oddeleni/{id}")
+    public ResponseEntity<List<PokojeOddeleni>> getByOddeleniId(@PathVariable Long id) {
+        return ResponseEntity.ok(pokojeService.getByOddeleniId(id));
+    }
 
     @PostMapping
     public void createPokoj(@RequestBody PokojeOddeleni pokoj) {
@@ -29,10 +33,12 @@ public class PokojeOddeleniController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<PokojeOddeleni> getByPokojId(@PathVariable Integer id) {
+    public ResponseEntity<PokojeOddeleni> getByPokojId(@PathVariable Long id) {
         PokojeOddeleni pokoj = pokojeService.getByPokojId(id);
         return ResponseEntity.ok(pokoj);
     }
+
+
 
     @PutMapping("{id}")
     public ResponseEntity<PokojeOddeleni> updatePokoj(@PathVariable int id, @RequestBody PokojeOddeleni pokoj) {
@@ -41,7 +47,7 @@ public class PokojeOddeleniController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deletePokoj(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> deletePokoj(@PathVariable Long id) {
         pokojeService.deletePokoj(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 

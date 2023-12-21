@@ -1,17 +1,14 @@
 package com.clinicappbdas2.controller;
 
-import com.clinicappbdas2.model.Pacient;
 import com.clinicappbdas2.model.views.PacientAdresa;
+import com.clinicappbdas2.model.views.PacientKarta;
 import com.clinicappbdas2.service.PacientAddressService;
+import com.clinicappbdas2.service.PacientKartaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:5173"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
@@ -21,6 +18,7 @@ import java.util.List;
 public class PacientAddressController {
 
     private final PacientAddressService pacientAddressService;
+    private final PacientKartaService pacientKartaService;
 
 
     @CrossOrigin
@@ -28,6 +26,14 @@ public class PacientAddressController {
     public ResponseEntity<List<PacientAdresa>> getAll() {
         return ResponseEntity.ok(pacientAddressService.getAll());
     }
+
+
+    //        return axios.get<PacientAdresa[]>(`${BASE_URL}/oddeleni/${oddeleniId}`);
+    @GetMapping("oddeleni/{id}")
+    public ResponseEntity<List<PacientKarta>> getAllByOddeleni(@PathVariable Long id) {
+        return ResponseEntity.ok(pacientKartaService.getAllByOddeleniId(id));
+    }
+
 
     @PostMapping
     public void createPacientAddress(@RequestBody PacientAdresa pacient) {

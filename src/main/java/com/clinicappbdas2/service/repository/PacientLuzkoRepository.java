@@ -19,13 +19,20 @@ public class PacientLuzkoRepository {
         return jdbcTemplate.query(sql, new PacientLuzkoMapper());
     }
 
-    public List<PacientLuzko> getLuzkaByPokojId(Integer id) {
+    public List<PacientLuzko> getLuzkaByPokojId(Long id) {
         String sql = "SELECT * FROM PACIENTI_LUZKA_VIEW WHERE ID_POKOJ = ?";
         return jdbcTemplate.query(sql, new Object[]{id}, new PacientLuzkoMapper());
 
     }
 
-    public PacientLuzko getByLuzkoId(Integer id) {
+    public PacientLuzko getLuzkoByPacId(Long id){
+        String sql = "SELECT * FROM PACIENTI_LUZKA_VIEW WHERE ID_PACIENT = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new PacientLuzkoMapper());
+    }
+
+
+
+    public PacientLuzko getByLuzkoId(Long id) {
         String sql = "SELECT * FROM PACIENTI_LUZKA_VIEW WHERE ID_LUZKO = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new PacientLuzkoMapper());
 
@@ -41,7 +48,7 @@ public class PacientLuzkoRepository {
 
     }
 
-    public void releaseLuzko(Integer id) {
+    public void releaseLuzko(Long id) {
         String sql = "CALL UVOLNI_LUZKO(?)";
         jdbcTemplate.update(sql, id);
     }
@@ -53,7 +60,7 @@ public class PacientLuzkoRepository {
 
     }
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         String sql = "DELETE FROM LUZKA WHERE ID_LUZKO = ?";
         jdbcTemplate.update(sql, id);
     }

@@ -10,9 +10,9 @@ public class PacientLuzkoMapper implements RowMapper<PacientLuzko> {
     @Override
     public PacientLuzko mapRow(ResultSet rs, int rowNum) throws SQLException {
         PacientLuzko luzko = new PacientLuzko();
-        luzko.setIdLuzko(rs.getInt("ID_LUZKO"));
-        luzko.setIdPokoj(rs.getInt("ID_POKOJ"));
-        luzko.setIdPacient(rs.getInt("ID_PACIENT"));
+        luzko.setIdLuzko(rs.getLong("ID_LUZKO"));
+        luzko.setIdPokoj(rs.getLong("ID_POKOJ"));
+        luzko.setIdPacient(rs.getLong("ID_PACIENT"));
         luzko.setJmeno(rs.getString("JMENO"));
         luzko.setPrijmeni(rs.getString("PRIJMENI"));
         luzko.setDatumRezervace(rs.getDate("DATUM_REZERVACE"));

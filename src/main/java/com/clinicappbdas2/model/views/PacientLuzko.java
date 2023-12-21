@@ -8,9 +8,9 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class PacientLuzko {
-    private int idLuzko;
-    private int idPokoj;
-    private int idPacient;
+    private Long idLuzko;
+    private Long idPokoj;
+    private Long idPacient;
     private String jmeno;
     private String prijmeni;
     private Date datumRezervace;

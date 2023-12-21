@@ -3,6 +3,7 @@ package com.clinicappbdas2.controller;
 import com.clinicappbdas2.model.views.NavstevaPacienta;
 import com.clinicappbdas2.service.NavstevyPacientuService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,5 +49,14 @@ public class NavstevyPacientuController {
     public ResponseEntity<NavstevaPacienta> updateNavsteva(@PathVariable int id, @RequestBody NavstevaPacienta navsteva) {
         navstevyService.updateNavsteva(navsteva);
         return ResponseEntity.ok(navsteva);
+    }
+
+
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> deleteNavsteva(@PathVariable Long id) {
+        navstevyService.deleteById(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

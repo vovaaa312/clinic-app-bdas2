@@ -1,7 +1,6 @@
 package com.clinicappbdas2.service.repository;
 
 import com.clinicappbdas2.model.Oddeleni;
-import com.clinicappbdas2.model.Pacient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,5 +31,57 @@ public class OddeleniRepository {
                 BeanPropertyRowMapper.newInstance(Oddeleni.class), nazev);
         return odd.getIdOddeleni();
     }
+
+//    public Double calculateAverageStayDuration(Integer oddeleniId) {
+//        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate)
+//                .withProcedureName("calculate_average_stay_duration")
+//                .declareParameters(
+//                        new SqlParameter("p_oddeleni_id", Types.INTEGER),
+//                        new SqlOutParameter("p_average_duration", Types.NUMERIC)
+//                );
+//
+//        Map<String, Object> inParams = new HashMap<>();
+//        inParams.put("p_oddeleni_id", oddeleniId);
+//
+//        Map<String, Object> result = jdbcCall.execute(inParams);
+//
+//        if (result != null && result.containsKey("p_average_duration")) {
+//            return (Double) result.get("p_average_duration");
+//        } else {
+//            throw new RuntimeException("Failed to calculate average stay duration");
+//        }
+//    }
+
+//    public Integer calculateAverageStayDuration(Integer oddeleniId) {
+//        String procedureCall = "{call calculate_average_stay_duration(?, ?)}";
+//        Map<String, Object> inParams = new HashMap<>();
+//        inParams.put("p_oddeleni_id", oddeleniId);
+//
+//        // Зарегистрируйте выходной параметр как Types.NUMERIC
+//        jdbcTemplate.execute(procedureCall, (CallableStatementCallback<Object>) cs -> {
+//            cs.setInt(1, oddeleniId);
+//            cs.registerOutParameter(2, Types.NUMERIC);
+//            cs.execute();
+//            return cs.getDouble(2); // Получаем значение из выходного параметра
+//        });
+//
+//
+//        // Получите значение из выходного параметра
+//        Double result = (Double) inParams.get("p_average_duration");
+//
+//        if (result != null) {
+//            // Преобразуйте Double в Integer
+//            return result.intValue();
+//        } else {
+//            throw new RuntimeException("Failed to calculate average stay duration");
+//        }
+//    }
+
+
+
+
+
+
+
 
 }

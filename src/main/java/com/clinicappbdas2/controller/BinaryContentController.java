@@ -24,8 +24,8 @@ public class BinaryContentController {
         this.binaryContentService = binaryContentService;
     }
 
-    @PostMapping
-    public void insertBinaryContent(@RequestParam("file") MultipartFile file) throws IOException {
+    @PostMapping("/insert/{id}")
+    public void insertBinaryContent(@RequestParam("file") MultipartFile file,  @PathVariable String id) throws IOException {
         BinaryContent binaryContent = new BinaryContent();
         binaryContent.setFileName(file.getOriginalFilename());
         binaryContent.setFileType(file.getContentType());
@@ -44,14 +44,14 @@ public class BinaryContentController {
         binaryContent.setUploadDate(new Date());
         binaryContent.setModificationDate(new Date());
         binaryContent.setOperationPerformed("upload");
-        binaryContent.setPerformedBy(1);
+        binaryContent.setPerformedBy(Long.parseLong(id));
 
         binaryContentService.insertBinaryContent(binaryContent);
     }
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateBinaryContent(@PathVariable int id, @RequestBody BinaryContent updatedContent) {
+    public ResponseEntity<String> updateBinaryContent(@PathVariable Long id, @RequestBody BinaryContent updatedContent) {
         try {
             BinaryContent existingContent = binaryContentService.getBinaryContent(id);
             if (existingContent == null) {
@@ -77,7 +77,7 @@ public class BinaryContentController {
 
 
     @GetMapping("/{id}")
-    public BinaryContent getBinaryContent(@PathVariable int id) {
+    public BinaryContent getBinaryContent(@PathVariable Long id) {
         return binaryContentService.getBinaryContent(id);
     }
 

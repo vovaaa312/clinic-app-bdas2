@@ -52,7 +52,7 @@ public class NavstevyPacientuRepository {
     }
 
     public void updateNavsteva(NavstevaPacienta navsteva){
-        String sql = "UPDATE_NAVSTEVU(?,?,?,?,?,?)";
+        String sql = "CALL UPDATE_NAVSTEVU(?,?,?,?,?,?)";
         jdbcTemplate.update(
                 sql,
                 navsteva.getDatum(),

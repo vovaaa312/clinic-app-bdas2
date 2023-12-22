@@ -1,8 +1,8 @@
 package com.clinicappbdas2.service;
 
 import com.clinicappbdas2.model.BinaryContent;
+import com.clinicappbdas2.model.mapper.BinaryContentRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -62,14 +62,14 @@ public class BinaryContentService {
     }
 
 
-    public BinaryContent getBinaryContent(int id) {
+    public BinaryContent getBinaryContent(Long id) {
         String sql = "SELECT * FROM BinaryContent WHERE ID = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id}, BinaryContent.class);
+        return jdbcTemplate.queryForObject(sql, new Object[]{id},new BinaryContentRowMapper());
     }
 
     public List<BinaryContent> getAllBinaryContents() {
         String sql = "SELECT * FROM BinaryContent";
-        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(BinaryContent.class));
+        return jdbcTemplate.query(sql, new BinaryContentRowMapper());
     }
 }
 

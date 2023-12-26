@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+
 import java.util.List;
 
 @Repository
@@ -69,5 +70,10 @@ public class NavstevyPacientuRepository {
     public void deleteById(Long id) {
         String sql = "CALL ODEBER_NAVSTEVU(?)";
         jdbcTemplate.update(sql,id);
+    }
+
+    public void getPatientRecommendation(Long visitId) {
+        String callProcedureSql = "CALL get_pacient_rekomendace(?)";
+        jdbcTemplate.update(callProcedureSql, visitId);
     }
 }

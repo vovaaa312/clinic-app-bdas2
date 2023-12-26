@@ -60,4 +60,11 @@ public class PacientLuzkoService {
 //                Integer.class
 //        );
     }
+
+
+    public double getAverageStayDuration(Integer idOddeleni) {
+        return luzkoRepository.calculateAverageStayDuration(idOddeleni);
+    }
+
+
 }

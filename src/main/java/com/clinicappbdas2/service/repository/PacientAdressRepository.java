@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -79,5 +80,14 @@ public class PacientAdressRepository {
     }
 
 
+    public Double vypocitatPrumernyVekPacientu(Date datumOd, Date datumDo, String pohlavi) {
+        // Call the stored function using JdbcTemplate
+        String sql = "SELECT vypocitat_prumerny_vek_pacientu(?, ?, ?) FROM DUAL";
+        Object[] params = { datumOd, datumDo, pohlavi };
 
+        // Execute the query and retrieve the result
+        Double result = jdbcTemplate.queryForObject(sql, params, Double.class);
+
+        return result;
+    }
 }

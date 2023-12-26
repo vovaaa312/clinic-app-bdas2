@@ -1,5 +1,6 @@
 package com.clinicappbdas2.service;
 
+import com.clinicappbdas2.model.request.PrumVekRequest;
 import com.clinicappbdas2.model.views.PacientAdresa;
 import com.clinicappbdas2.service.repository.PacientAdressRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,14 @@ public class PacientAddressService {
 
     public void update(PacientAdresa pacientAdresa) {
         pacientAdressRepository.updatePacient(pacientAdresa);
+    }
+
+    public Double vypocitatPrumernyVekPacientu(PrumVekRequest request) {
+        return pacientAdressRepository.vypocitatPrumernyVekPacientu(
+                request.getDatumOd(),
+                request.getDatumDo(),
+                request.getPohlavi()
+                );
     }
 
 //    public List<PacientKarta> getAllByOddeleniId(Long id) {

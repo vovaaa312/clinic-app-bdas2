@@ -32,6 +32,12 @@ public class OddeleniRepository {
         return odd.getIdOddeleni();
     }
 
+    public Long getAvailableBeds(Long departmentId) {
+        String sql = "SELECT  get_volna_luzka_pocet(?) from dual";
+        return jdbcTemplate.queryForObject(sql, new Object[]{departmentId}, Long.class);
+    }
+
+
 //    public Double calculateAverageStayDuration(Integer oddeleniId) {
 //        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate)
 //                .withProcedureName("calculate_average_stay_duration")

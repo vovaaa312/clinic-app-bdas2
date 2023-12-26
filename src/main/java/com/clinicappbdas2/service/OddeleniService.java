@@ -17,4 +17,8 @@ public class OddeleniService {
         return oddeleniRepository.getAll();
     }
 
+    public Long getAvailableBeds(Long id){
+        return oddeleniRepository.getAvailableBeds(id);
+    }
+
 }

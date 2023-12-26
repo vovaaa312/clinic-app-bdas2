@@ -81,4 +81,11 @@ public class PacientLuzkoController {
         int availableBeds = luzkoService.getAvailableBeds(oddelId);
         return ResponseEntity.ok(availableBeds);
     }
+
+    @GetMapping("/averageStayDuration/{idOddeleni}")
+    public ResponseEntity<Double> getAverageStayDuration(@PathVariable Integer idOddeleni) {
+        double averageDuration = luzkoService.getAverageStayDuration(idOddeleni);
+        return new ResponseEntity<>(averageDuration, HttpStatus.OK);
+    }
+
 }

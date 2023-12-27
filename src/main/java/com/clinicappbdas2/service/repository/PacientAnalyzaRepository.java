@@ -4,9 +4,14 @@ import com.clinicappbdas2.model.mapper.PacientAnalyzaMapper;
 import com.clinicappbdas2.model.views.PacientAnalyza;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -73,6 +78,25 @@ public class PacientAnalyzaRepository {
                 analyza.getHgb(),
                 analyza.getPlt(),
                 analyza.getDatum());
+    }
+
+    public List<Map<String, Object>> vypocitatScoreZdraviOddeleni() {
+        SimpleJdbcCall jdbcCall = new SimpleJdbcCall(jdbcTemplate)
+                .withFunctionName("vypocitat_skore_zdravi_oddeleni")
+                .returningResultSet("result", new RowMapper<Map<String, Object>>() {
+                    @Override
+                    public Map<String, Object> mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        // Обработка строки результата
+                        return Map.of(
+                                "NAZEV_ODDELENI", rs.getString("nazev_oddeleni"),
+                                "PRUM_ZDRAV_SKORE", rs.getDouble("prum_zdrav_skore")
+                        );
+                    }
+                });
+
+        Map<String, Object> result = jdbcCall.execute();
+        List<Map<String, Object>> resultList = (List<Map<String, Object>>) result.get("result");
+        return resultList;
     }
 
 }

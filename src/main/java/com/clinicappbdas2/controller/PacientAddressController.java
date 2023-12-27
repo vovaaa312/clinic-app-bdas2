@@ -6,12 +6,10 @@ import com.clinicappbdas2.model.views.PacientKarta;
 import com.clinicappbdas2.service.PacientAddressService;
 import com.clinicappbdas2.service.PacientKartaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:5173"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
@@ -37,13 +35,17 @@ public class PacientAddressController {
         return ResponseEntity.ok(pacientKartaService.getAllByOddeleniId(id));
     }
 
-    @GetMapping("prum-vek")
-    public ResponseEntity<Double> vypocitatPrumernyVekPacientu(@RequestParam("datumOd") @DateTimeFormat(pattern = "dd-MM-yyyy") Date datumOd,
-                                                               @RequestParam("datumDo") @DateTimeFormat(pattern = "dd-MM-yyyy") Date datumDo,
-                                                               @RequestParam("pohlavi") String pohlavi) {
-        return ResponseEntity.ok(pacientAddressService.vypocitatPrumernyVekPacientu(new PrumVekRequest(datumOd,datumDo, pohlavi)));
-    }
+//    @GetMapping("prum-vek")
+//    public ResponseEntity<Double> vypocitatPrumernyVekPacientu(@RequestParam("datumOd") Date datumOd,
+//                                                               @RequestParam("datumDo") Date datumDo,
+//                                                               @RequestParam("pohlavi") String pohlavi) {
+//        return ResponseEntity.ok(pacientAddressService.vypocitatPrumernyVekPacientu(new PrumVekRequest(datumOd,datumDo, pohlavi)));
+//    }
 
+    @PostMapping("prum-vek")
+    public ResponseEntity<Double> vypocitatPrumernyVekPacientu(@RequestBody PrumVekRequest request) {
+        return ResponseEntity.ok(pacientAddressService.vypocitatPrumernyVekPacientu(request));
+    }
 
 
     @PostMapping

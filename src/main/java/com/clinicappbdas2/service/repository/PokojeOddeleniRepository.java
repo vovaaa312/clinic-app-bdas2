@@ -30,7 +30,7 @@ public class PokojeOddeleniRepository {
         jdbcTemplate.update(
                 sql,
                 pokoj.getPatro(),
-                pokoj.getNazevOddeleni(),
+                pokoj.getIdOddeleni(),
                 pokoj.getCislo()
 
         );

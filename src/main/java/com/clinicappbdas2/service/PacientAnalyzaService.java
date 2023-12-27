@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class PacientAnalyzaService {
         repository.save(pacient);
     }
 
-    public void updateAnalyza(PacientAnalyza analyza){
+    public void updateAnalyza(PacientAnalyza analyza) {
         repository.updateAnalyza(analyza);
     }
 
@@ -28,7 +29,7 @@ public class PacientAnalyzaService {
         return repository.getByPacientId(id);
     }
 
-    public List<PacientAnalyza>getByOddeleniId(Long id){
+    public List<PacientAnalyza> getByOddeleniId(Long id) {
         return repository.getByOddeleniId(id);
     }
 
@@ -37,7 +38,11 @@ public class PacientAnalyzaService {
 
     }
 
-    public void deleteAnalysis(Long id){
-       repository.deleteAnalysis(id);
+    public void deleteAnalysis(Long id) {
+        repository.deleteAnalysis(id);
+    }
+
+    public List<Map<String, Object>> vypocitatScoreZdraviOddeleni() {
+        return repository.vypocitatScoreZdraviOddeleni();
     }
 }

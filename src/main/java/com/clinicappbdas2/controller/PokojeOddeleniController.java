@@ -30,6 +30,7 @@ public class PokojeOddeleniController {
     @PostMapping
     public void createPokoj(@RequestBody PokojeOddeleni pokoj) {
         pokojeService.createPokoj(pokoj);
+
     }
 
     @GetMapping("{id}")

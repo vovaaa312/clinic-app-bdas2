@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Value
 public class PrumVekRequest {
-    Date datumOd;
-    Date datumDo;
-    String pohlavi;
+    Date    datumOd;
+    Date    datumDo;
+    String  pohlavi;
 }

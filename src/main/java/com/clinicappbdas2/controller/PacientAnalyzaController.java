@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = {"http://localhost:5173"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
@@ -59,5 +60,11 @@ public class PacientAnalyzaController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
+
+    @GetMapping("avgscore")
+    public ResponseEntity<List<Map<String, Object>>> vypocitatScoreZdraviOddeleni(){
+        return ResponseEntity.ok(pacientService.vypocitatScoreZdraviOddeleni());
+    }
+
 
 }

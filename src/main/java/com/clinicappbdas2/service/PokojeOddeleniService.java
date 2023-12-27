@@ -24,6 +24,7 @@ public class PokojeOddeleniService {
 
     public void createPokoj(PokojeOddeleni pokoj) {
         pokojeRepository.addPokoj(pokoj);
+
     }
 
     public void deletePokoj(Long id) {

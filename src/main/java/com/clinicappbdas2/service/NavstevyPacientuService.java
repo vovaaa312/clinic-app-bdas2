@@ -43,4 +43,8 @@ public class NavstevyPacientuService {
     public void deleteById(Long id) {
         navstevyRepository.deleteById(id);
     }
+
+    public void getPatientRecommendation(Long visitId) {
+        navstevyRepository.getPatientRecommendation(visitId);
+    }
 }

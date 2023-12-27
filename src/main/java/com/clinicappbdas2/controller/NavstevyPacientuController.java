@@ -51,6 +51,12 @@ public class NavstevyPacientuController {
         return ResponseEntity.ok(navsteva);
     }
 
+    @GetMapping("/recommendation/{id}")
+    public ResponseEntity<?> getRecommendation(@PathVariable Long id) {
+        navstevyService.getPatientRecommendation(id);
+        return ResponseEntity.ok("Recommendation updated");
+    }
+
 
 
     @DeleteMapping("{id}")
